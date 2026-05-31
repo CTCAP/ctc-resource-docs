@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CTC Resource Infrastructure — Full Reference</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,700;1,700&family=Montserrat:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
+<style>
+:root{
+  --red:#ED1C2E;--blue:#009CCC;--ocean:#9AA4AF;--slate:#50545D;--deep:#263842;
+  --white:#fff;--bg:#fff;--bg2:#f7f6f4;--bg3:#f0efec;
+  --text:#263842;--text2:#50545D;--text3:#9AA4AF;
+  --border:rgba(38,56,66,0.12);--border2:rgba(38,56,66,0.2);
+  --ff-head:'Montserrat',sans-serif;
+  --ff-serif:'Playfair Display',serif;
+  --ff-body:'Libre Franklin',sans-serif;
+  --max:1100px;
+}
+@media(prefers-color-scheme:dark){
+  :root{--bg:#1a2128;--bg2:#212b33;--bg3:#283540;--text:#e8e4dc;--text2:#9AA4AF;--text3:#50545D;--border:rgba(255,255,255,0.08);--border2:rgba(255,255,255,0.16);}
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--ff-body);background:var(--bg);color:var(--text);line-height:1.7;font-size:clamp(15px,1.2vw,18px)}
+
+/* ── NAV ── */
+nav{position:sticky;top:0;z-index:100;background:var(--bg);border-bottom:1px solid var(--border);padding:0 6vw}
+.nav-inner{max-width:var(--max);margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:60px;gap:2rem}
+.nav-logo{display:flex;align-items:center;gap:10px;flex-shrink:0}
+.nav-mark{width:32px;height:32px;background:var(--red);border-radius:3px;display:flex;align-items:center;justify-content:center}
+.nav-mark span{font-family:var(--ff-head);font-weight:700;font-size:12px;color:#fff;letter-spacing:0.05em}
+.nav-title{font-family:var(--ff-head);font-size:12px;font-weight:600;color:var(--text3);letter-spacing:0.12em;text-transform:uppercase}
+.nav-links{display:flex;gap:1.5rem;flex-wrap:wrap}
+.nav-links a{font-family:var(--ff-head);font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--text3);text-decoration:none;transition:color .2s}
+.nav-links a:hover{color:var(--red)}
+.page-badge{font-family:var(--ff-head);font-size:10px;font-weight:700;padding:2px 8px;border-radius:999px;letter-spacing:0.08em;text-transform:uppercase}
+.p1{background:rgba(237,28,46,0.1);color:var(--red);border:1px solid rgba(237,28,46,0.2)}
+.p2{background:rgba(0,156,204,0.1);color:var(--blue);border:1px solid rgba(0,156,204,0.2)}
+
+/* ── LAYOUT ── */
+.page-wrap{max-width:var(--max);margin:0 auto;padding:0 6vw}
+
+/* ── HERO ── */
+.hero{padding:5rem 0 3.5rem;border-bottom:1px solid var(--border)}
+.hero-label{font-family:var(--ff-head);font-size:11px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:var(--text3);margin-bottom:1rem}
+.hero-title{font-family:var(--ff-serif);font-size:clamp(36px,5vw,64px);font-weight:700;line-height:1.08;color:var(--text);margin-bottom:1.5rem}
+.hero-title em{font-style:italic;color:var(--red)}
+.hero-lead{font-size:clamp(16px,1.4vw,20px);line-height:1.8;color:var(--text2);max-width:72ch;font-weight:300;margin-bottom:2rem}
+.page-map{display:flex;gap:12px;flex-wrap:wrap}
+.page-pill{display:flex;align-items:center;gap:8px;padding:10px 18px;border-radius:8px;border:1px solid var(--border2);background:var(--bg2);font-size:13px;color:var(--text2);font-weight:400;text-decoration:none;transition:border-color .2s,background .2s}
+.page-pill:hover{border-color:var(--red);background:rgba(237,28,46,0.04)}
+.page-pill strong{font-family:var(--ff-head);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em}
+
+/* ── SECTION STRUCTURE ── */
+.doc-section{padding:4rem 0;border-bottom:1px solid var(--border)}
+.section-header{margin-bottom:2.5rem}
+.section-super{display:flex;align-items:center;gap:10px;margin-bottom:0.75rem}
+.section-label{font-family:var(--ff-head);font-size:11px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--text3)}
+.section-title{font-family:var(--ff-serif);font-size:clamp(26px,3vw,40px);font-weight:700;line-height:1.12;color:var(--text)}
+.section-title em{font-style:italic;color:var(--red)}
+.section-lead{margin-top:0.75rem;font-size:clamp(15px,1.2vw,18px);color:var(--text2);max-width:68ch;font-weight:300;line-height:1.75}
+
+/* ── STREAM CARDS ── */
+.stream-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(12px,2vw,24px);margin-top:2rem}
+.stream-card{background:var(--bg2);border:1px solid var(--border2);border-top:3px solid var(--red);border-radius:8px;padding:clamp(1.25rem,2.5vw,2rem)}
+.stream-icon{font-size:clamp(24px,2.5vw,34px);color:var(--red);margin-bottom:0.875rem}
+.stream-name{font-family:var(--ff-head);font-size:clamp(12px,1vw,15px);font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--text);margin-bottom:0.5rem}
+.stream-desc{font-size:clamp(13px,1vw,15px);color:var(--text3);line-height:1.65;font-weight:300}
+
+/* ── ENTRY POINTS ── */
+.entry-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(12px,2vw,24px);margin-top:2rem}
+.entry-card{background:var(--bg2);border:1px solid var(--border2);border-radius:8px;padding:clamp(1.25rem,2.5vw,2rem)}
+.entry-tag{font-family:var(--ff-head);font-size:10px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--blue);margin-bottom:0.5rem}
+.entry-name{font-family:var(--ff-head);font-size:clamp(13px,1.1vw,16px);font-weight:700;color:var(--text);margin-bottom:0.5rem}
+.entry-method{font-size:clamp(13px,1vw,15px);color:var(--text2);font-weight:500;margin-bottom:0.4rem}
+.entry-rationale{font-size:clamp(12px,0.95vw,14px);color:var(--text3);line-height:1.6;font-weight:300}
+.entry-note{margin-top:1.75rem;padding:14px 18px;background:var(--bg2);border-left:4px solid var(--ocean);border-radius:0 6px 6px 0;font-size:clamp(13px,1.05vw,16px);color:var(--text2);line-height:1.7;font-weight:300}
+
+/* ── GOVERNANCE ── */
+.gov-list{display:flex;flex-direction:column;gap:16px;margin-top:2rem;max-width:72ch}
+.gov-item{display:flex;align-items:flex-start;gap:16px}
+.gov-bar{width:5px;min-width:5px;height:24px;background:var(--red);border-radius:2px;margin-top:4px}
+.gov-text{font-size:clamp(14px,1.15vw,17px);color:var(--text2);line-height:1.7;font-weight:300}
+.gov-text strong{font-weight:600;color:var(--text)}
+
+/* ── TABLE ── */
+.data-table{width:100%;border-collapse:collapse;margin-top:2rem;font-size:clamp(13px,1vw,16px)}
+.data-table th{font-family:var(--ff-head);font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text3);text-align:left;padding:10px 16px;border-bottom:2px solid var(--border2);background:var(--bg2)}
+.data-table td{padding:12px 16px;border-bottom:1px solid var(--border);color:var(--text2);font-weight:300;vertical-align:top;line-height:1.65}
+.data-table td:first-child{font-family:var(--ff-head);font-size:12px;font-weight:600;color:var(--text);letter-spacing:0.04em;white-space:nowrap}
+.data-table tr:last-child td{border-bottom:none}
+
+/* ── NETWORK GRAPH ── */
+.node-types{display:flex;gap:12px;flex-wrap:wrap;margin-top:1.5rem;margin-bottom:2rem}
+.node-type{display:flex;align-items:center;gap:8px;padding:8px 14px;background:var(--bg2);border:1px solid var(--border2);border-radius:6px;font-size:13px;color:var(--text2)}
+.node-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+.nd-aff{background:var(--red)}
+.nd-theme{background:var(--blue)}
+.nd-city{background:var(--ocean)}
+.insight-box{margin-top:2rem;padding:1.5rem 1.75rem;background:var(--bg2);border:1px solid var(--border2);border-left:4px solid var(--blue);border-radius:0 8px 8px 0}
+.insight-title{font-family:var(--ff-head);font-size:12px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--blue);margin-bottom:0.75rem}
+.insight-body{font-size:clamp(14px,1.1vw,16px);color:var(--text2);line-height:1.75;font-weight:300}
+.insight-tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:1rem}
+.itag{font-family:var(--ff-head);font-size:10px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;padding:4px 10px;border-radius:4px;background:rgba(0,156,204,0.08);color:var(--blue);border:1px solid rgba(0,156,204,0.2)}
+
+/* ── DESIGN PROCESS ── */
+.steps-list{display:flex;flex-direction:column;gap:0;margin-top:2rem;max-width:72ch}
+.step-item{display:flex;gap:1.75rem;padding:1.5rem 0;border-bottom:1px solid var(--border)}
+.step-item:last-child{border-bottom:none}
+.step-n{font-family:var(--ff-serif);font-size:clamp(28px,2.5vw,40px);font-weight:700;color:var(--red);line-height:1;min-width:40px;flex-shrink:0;padding-top:2px}
+.step-content{}
+.step-name{font-family:var(--ff-head);font-size:clamp(13px,1.1vw,16px);font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--text);margin-bottom:0.4rem}
+.step-desc{font-size:clamp(13px,1.05vw,16px);color:var(--text2);line-height:1.7;font-weight:300}
+
+/* ── TECH STACK ── */
+.stack-note{margin-bottom:2rem;padding:14px 18px;background:var(--bg2);border-left:4px solid var(--red);border-radius:0 6px 6px 0;font-size:clamp(13px,1.05vw,16px);color:var(--text2);line-height:1.7;font-weight:300}
+.phase-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(14px,2.5vw,28px);margin-top:2rem}
+.phase-block{background:var(--bg2);border:1px solid var(--border2);border-radius:8px;padding:clamp(1.25rem,2vw,1.75rem)}
+.phase-label{font-family:var(--ff-head);font-size:10px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:0.5rem}
+.ph-1{color:var(--red)}
+.ph-2{color:var(--blue)}
+.phase-name{font-family:var(--ff-head);font-size:clamp(14px,1.2vw,17px);font-weight:600;color:var(--text);margin-bottom:0.75rem}
+.phase-items{display:flex;flex-direction:column;gap:6px}
+.phase-item{font-size:clamp(13px,1vw,15px);color:var(--text2);font-weight:300;display:flex;align-items:baseline;gap:8px}
+.phase-item::before{content:'';width:4px;height:4px;border-radius:50%;background:var(--border2);flex-shrink:0;margin-top:8px}
+
+/* ── FOOTER ── */
+footer{padding:3rem 0;text-align:center}
+.footer-inner{max-width:var(--max);margin:0 auto;padding:0 6vw}
+.footer-mark{display:inline-flex;align-items:center;gap:10px;margin-bottom:1rem}
+.footer-mark .nav-mark{width:28px;height:28px}
+.footer-mark .nav-mark span{font-size:10px}
+.footer-wordmark{font-family:var(--ff-head);font-size:11px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--text3)}
+.footer-note{font-size:13px;color:var(--text3);font-weight:300}
+
+@media(max-width:768px){
+  .stream-grid,.entry-grid,.phase-grid{grid-template-columns:1fr}
+  .nav-links{display:none}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <div class="nav-logo">
+      <div class="nav-mark"><span>CTC</span></div>
+      <span class="nav-title">Resource Infrastructure</span>
+    </div>
+    <div class="nav-links">
+      <a href="#streams">Streams</a>
+      <a href="#entry-points">Entry Points</a>
+      <a href="#governance">Governance</a>
+      <a href="#network">Network Graph</a>
+      <a href="#design">Design Process</a>
+      <a href="#tech">Technology</a>
+    </div>
+  </div>
+</nav>
+
+<div class="page-wrap">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-label">City to City · Resource Infrastructure</div>
+    <h1 class="hero-title">A shared resource network<br>for <em>City to City</em></h1>
+    <p class="hero-lead">A system that lets hub city affiliates contribute resources on their own terms — and lets anyone in the network find what others have built. Built entirely within Google Workspace. Governed by the people it serves. Designed before it is built.</p>
+    <div class="page-map">
+      <a href="#streams" class="page-pill"><span class="page-badge p1">Page 1</span><strong>Streams · Entry Points · Governance</strong></a>
+      <a href="#network" class="page-pill"><span class="page-badge p2">Page 2</span><strong>Network Graph · Design Process · Technology</strong></a>
+    </div>
+  </section>
+
+  <!-- PAGE 1 DIVIDER -->
+  <div style="padding:2.5rem 0 0;display:flex;align-items:center;gap:14px">
+    <span class="page-badge p1">Page 1</span>
+    <span style="font-family:var(--ff-head);font-size:11px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--text3)">Foundation</span>
+  </div>
+
+  <!-- THREE STREAMS -->
+  <section class="doc-section" id="streams">
+    <div class="section-header">
+      <div class="section-super">
+        <span class="section-label">Three Resource Streams</span>
+      </div>
+      <h2 class="section-title">One network, three distinct <em>communities</em></h2>
+      <p class="section-lead">Each stream has its own intake site, file storage, metadata database, and local coordinator.</p>
+    </div>
+    <div class="stream-grid">
+      <div class="stream-card">
+        <div class="stream-icon"><i class="ti ti-building-community"></i></div>
+        <div class="stream-name">Hub City Resources</div>
+        <div class="stream-desc">City strategies, gospel DNA, movement metrics, city engagement tools</div>
+      </div>
+      <div class="stream-card">
+        <div class="stream-icon"><i class="ti ti-school"></i></div>
+        <div class="stream-name">Training Resources</div>
+        <div class="stream-desc">Curriculum, facilitator guides, leadership formation, church multiplication</div>
+      </div>
+      <div class="stream-card">
+        <div class="stream-icon"><i class="ti ti-users"></i></div>
+        <div class="stream-name">Coaching Resources</div>
+        <div class="stream-desc">Coaching manuals, gospel coaching tools, practitioner case studies</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- THREE ENTRY POINTS -->
+  <section class="doc-section" id="entry-points">
+    <div class="section-header">
+      <div class="section-super">
+        <span class="section-label">Three Visual Entry Points</span>
+      </div>
+      <h2 class="section-title">Each stream, its own <em>way in</em></h2>
+      <p class="section-lead">Each visual entry point is an invitation into a searchable resource library — not a replacement for it. The library is the primary interface for finding and accessing specific materials.</p>
+    </div>
+    <div class="entry-grid">
+      <div class="entry-card">
+        <div class="entry-tag">Hub City Resources</div>
+        <div class="entry-name">Geographic Map</div>
+        <div class="entry-method">Hub cities · resource counts per city</div>
+        <div class="entry-rationale">Cities are the identity. People think spatially and relationally.</div>
+      </div>
+      <div class="entry-card">
+        <div class="entry-tag">Training Resources</div>
+        <div class="entry-name">Topic Landscape</div>
+        <div class="entry-method">Categories scaled by resource count</div>
+        <div class="entry-rationale">People ask what exists on a topic, not what a specific city has.</div>
+      </div>
+      <div class="entry-card">
+        <div class="entry-tag">Coaching Resources</div>
+        <div class="entry-name">Context Explorer</div>
+        <div class="entry-method">Coaching situation and practice</div>
+        <div class="entry-rationale">Coaches search by context: Muslim-majority, early-stage, persecuted.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GOVERNANCE -->
+  <section class="doc-section" id="governance">
+    <div class="section-header">
+      <div class="section-super">
+        <span class="section-label">Governance</span>
+      </div>
+      <h2 class="section-title">The system serves those who <em>built</em> it</h2>
+    </div>
+    <div class="gov-list">
+      <div class="gov-item"><div class="gov-bar"></div><div class="gov-text"><strong>Affiliates retain ownership.</strong> Files stay in affiliate-controlled Drive. The system holds metadata and links only.</div></div>
+      <div class="gov-item"><div class="gov-bar"></div><div class="gov-text"><strong>Permission set at submission.</strong> Nothing becomes more visible without explicit approval at the point of submission.</div></div>
+      <div class="gov-item"><div class="gov-bar"></div><div class="gov-text"><strong>Withdrawal is always possible.</strong> Affiliates can request removal of any resource at any time through their stream coordinator.</div></div>
+      <div class="gov-item"><div class="gov-bar"></div><div class="gov-text"><strong>Participation is invited, not required.</strong> The network grows through trust, not mandate.</div></div>
+      <div class="gov-item"><div class="gov-bar"></div><div class="gov-text"><strong>Each stream governs itself.</strong> Stream coordinators hold full triage and approval authority within their stream.</div></div>
+    </div>
+  </section>
+
+  <!-- PAGE 2 DIVIDER -->
+  <div style="padding:2.5rem 0 0;display:flex;align-items:center;gap:14px">
+    <span class="page-badge p2">Page 2</span>
+    <span style="font-family:var(--ff-head);font-size:11px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--text3)">Infrastructure &amp; Process</span>
+  </div>
+
+  <!-- NETWORK GRAPH -->
+  <section class="doc-section" id="network">
+    <div class="section-header">
+      <div class="section-super">
+        <span class="section-label">Network Graph — Second Level</span>
+      </div>
+      <h2 class="section-title">For coordinators and <em>strategists</em></h2>
+      <p class="section-lead">The network graph sits behind each visual entry point. It is not the primary way in for most users — it is an analytical tool for people asking pattern questions across the full corpus of approved resources. Each stream has its own per-stream graph.</p>
+    </div>
+
+    <div class="node-types">
+      <div class="node-type"><div class="node-dot nd-aff"></div>Affiliates</div>
+      <div class="node-type"><div class="node-dot nd-theme"></div>Themes &amp; Categories</div>
+      <div class="node-type"><div class="node-dot nd-city"></div>Cities (secondary tags)</div>
+    </div>
+    <p style="font-size:clamp(13px,1.05vw,16px);color:var(--text2);font-weight:300;margin-bottom:1.5rem;max-width:68ch">Edge weight is set by resource count — a theme connected to an affiliate by fifteen resources renders differently from one connected by one.</p>
+
+    <table class="data-table">
+      <thead><tr><th>Calculation</th><th>What it reveals</th></tr></thead>
+      <tbody>
+        <tr><td>Degree centrality</td><td>How many connections does this node carry?</td></tr>
+        <tr><td>Betweenness</td><td>Does this node bridge separate clusters?</td></tr>
+        <tr><td>Clustering coefficient</td><td>How connected are a node's neighbours to each other?</td></tr>
+        <tr><td>Eigenvector</td><td>Are this node's connections themselves well-connected?</td></tr>
+      </tbody>
+    </table>
+
+    <div class="insight-box" style="margin-top:2rem">
+      <div class="insight-title">Metadata Insight Layer</div>
+      <div class="insight-body">Gaps — nodes with near-zero connections — are surfaced explicitly. A metadata insight layer reads approved metadata rows (never file content) and generates strategic briefs: gap analysis, translation priorities, bridge resource identification, cluster narratives.<br><br>The insight layer calls the Claude API via Apps Script UrlFetchApp. No file content is ever sent — only approved metadata fields.</div>
+      <div class="insight-tags">
+        <span class="itag">Title</span>
+        <span class="itag">Description</span>
+        <span class="itag">Category</span>
+        <span class="itag">Language</span>
+        <span class="itag">City</span>
+        <span class="itag">Affiliate</span>
+        <span class="itag">Status</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- DESIGN PROCESS -->
+  <section class="doc-section" id="design">
+    <div class="section-header">
+      <div class="section-super">
+        <span class="section-label">Human-Centred Design Process</span>
+      </div>
+      <h2 class="section-title"><em>Designed</em> before it is built</h2>
+      <p class="section-lead">The category vocabulary, permission logic, and workflow emerge from the people who will use the system. Timeline is process-driven, not date-driven.</p>
+    </div>
+    <div class="steps-list">
+      <div class="step-item">
+        <div class="step-n">01</div>
+        <div class="step-content">
+          <div class="step-name">Team Alignment</div>
+          <div class="step-desc">Individual conversations with each stream team lead before any group session. The goal is whether the direction is right — not a briefing.</div>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-n">02</div>
+        <div class="step-content">
+          <div class="step-name">Stream Working Sessions</div>
+          <div class="step-desc">One 60-minute session per stream: what do you collect, who owns it, what do you call it? Output: draft category list, coordinator nomination, affiliate contacts.</div>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-n">03</div>
+        <div class="step-content">
+          <div class="step-name">Affiliate Outreach</div>
+          <div class="step-desc">Through existing stream coordinator relationships. The message: we are designing this together before anything is built.</div>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-n">04</div>
+        <div class="step-content">
+          <div class="step-name">Participatory Survey</div>
+          <div class="step-desc">Affiliates vote on candidate category tags, permission options, and language fields.</div>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-n">05</div>
+        <div class="step-content">
+          <div class="step-name">Schema Consolidation</div>
+          <div class="step-desc">Controlled vocabulary agreed across all three streams. Build decision follows.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TECHNOLOGY -->
+  <section class="doc-section" id="tech">
+    <div class="section-header">
+      <div class="section-super">
+        <span class="section-label">Technology Stack</span>
+      </div>
+      <h2 class="section-title">Entirely within <em>Google Workspace</em></h2>
+    </div>
+    <div class="stack-note">No external dependencies required for Phase 1. All infrastructure runs on tools already in use across the network.</div>
+
+    <table class="data-table">
+      <thead><tr><th>Component</th><th>Role</th></tr></thead>
+      <tbody>
+        <tr><td>Google Sites + Forms</td><td>Landing page, three stream intake sites, submission forms</td></tr>
+        <tr><td>Google Drive + Sheets</td><td>File storage per stream, master metadata database, triage workflow</td></tr>
+        <tr><td>Apps Script</td><td>Automation — triggers, emails, Drive routing, web app dashboard, API calls</td></tr>
+        <tr><td>Highcharts + Claude API</td><td>Network graph per-stream and cross-stream, metadata insight layer</td></tr>
+      </tbody>
+    </table>
+
+    <div class="phase-grid">
+      <div class="phase-block">
+        <div class="phase-label ph-1">Phase 1 — Foundation</div>
+        <div class="phase-name">Build what is needed to begin</div>
+        <div class="phase-items">
+          <div class="phase-item">Intake sites and submission forms</div>
+          <div class="phase-item">File storage per stream</div>
+          <div class="phase-item">Master metadata database</div>
+          <div class="phase-item">Triage and permissions workflow</div>
+          <div class="phase-item">Multilingual tracking</div>
+        </div>
+      </div>
+      <div class="phase-block">
+        <div class="phase-label ph-2">Phase 2 — Discovery</div>
+        <div class="phase-name">Build what lets people find things</div>
+        <div class="phase-items">
+          <div class="phase-item">Visual entry points (map, landscape, explorer)</div>
+          <div class="phase-item">Searchable resource library</div>
+          <div class="phase-item">Per-stream network graph</div>
+          <div class="phase-item">Metadata insight layer (Claude API)</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-mark">
+      <div class="nav-mark"><span>CTC</span></div>
+      <span class="footer-wordmark">City to City</span>
+    </div>
+    <p class="footer-note">Resource Infrastructure · Internal Reference Document</p>
+  </div>
+</footer>
+
+</body>
+</html>
