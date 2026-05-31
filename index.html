@@ -11,7 +11,7 @@
 <style>
 :root{
   --red:#ED1C2E;--blue:#009CCC;--ocean:#9AA4AF;--slate:#50545D;--deep:#263842;
-  --white:#fff;--bg:#fff;--bg2:#f7f6f4;--bg3:#f0efec;
+  --bg:#fff;--bg2:#f7f6f4;--bg3:#f0efec;
   --text:#263842;--text2:#50545D;--text3:#9AA4AF;
   --border:rgba(38,56,66,0.12);--border2:rgba(38,56,66,0.2);
   --ff-head:'Montserrat',sans-serif;
@@ -26,7 +26,7 @@
 html{scroll-behavior:smooth}
 body{font-family:var(--ff-body);background:var(--bg);color:var(--text);line-height:1.7;font-size:clamp(15px,1.2vw,18px)}
 
-/* ── NAV ── */
+/* NAV */
 nav{position:sticky;top:0;z-index:100;background:var(--bg);border-bottom:1px solid var(--border);padding:0 6vw}
 .nav-inner{max-width:var(--max);margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:60px;gap:2rem}
 .nav-logo{display:flex;align-items:center;gap:10px;flex-shrink:0}
@@ -40,21 +40,21 @@ nav{position:sticky;top:0;z-index:100;background:var(--bg);border-bottom:1px sol
 .p1{background:rgba(237,28,46,0.1);color:var(--red);border:1px solid rgba(237,28,46,0.2)}
 .p2{background:rgba(0,156,204,0.1);color:var(--blue);border:1px solid rgba(0,156,204,0.2)}
 
-/* ── LAYOUT ── */
+/* LAYOUT */
 .page-wrap{max-width:var(--max);margin:0 auto;padding:0 6vw}
 
-/* ── HERO ── */
+/* HERO */
 .hero{padding:5rem 0 3.5rem;border-bottom:1px solid var(--border)}
 .hero-label{font-family:var(--ff-head);font-size:11px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:var(--text3);margin-bottom:1rem}
 .hero-title{font-family:var(--ff-serif);font-size:clamp(36px,5vw,64px);font-weight:700;line-height:1.08;color:var(--text);margin-bottom:1.5rem}
 .hero-title em{font-style:italic;color:var(--red)}
 .hero-lead{font-size:clamp(16px,1.4vw,20px);line-height:1.8;color:var(--text2);max-width:72ch;font-weight:300;margin-bottom:2rem}
 .page-map{display:flex;gap:12px;flex-wrap:wrap}
-.page-pill{display:flex;align-items:center;gap:8px;padding:10px 18px;border-radius:8px;border:1px solid var(--border2);background:var(--bg2);font-size:13px;color:var(--text2);font-weight:400;text-decoration:none;transition:border-color .2s,background .2s}
-.page-pill:hover{border-color:var(--red);background:rgba(237,28,46,0.04)}
+.page-pill{display:flex;align-items:center;gap:8px;padding:10px 18px;border-radius:8px;border:1px solid var(--border2);background:var(--bg2);font-size:13px;color:var(--text2);font-weight:400;text-decoration:none;transition:border-color .2s}
+.page-pill:hover{border-color:var(--red)}
 .page-pill strong{font-family:var(--ff-head);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em}
 
-/* ── SECTION STRUCTURE ── */
+/* SECTION */
 .doc-section{padding:4rem 0;border-bottom:1px solid var(--border)}
 .section-header{margin-bottom:2.5rem}
 .section-super{display:flex;align-items:center;gap:10px;margin-bottom:0.75rem}
@@ -63,81 +63,95 @@ nav{position:sticky;top:0;z-index:100;background:var(--bg);border-bottom:1px sol
 .section-title em{font-style:italic;color:var(--red)}
 .section-lead{margin-top:0.75rem;font-size:clamp(15px,1.2vw,18px);color:var(--text2);max-width:68ch;font-weight:300;line-height:1.75}
 
-/* ── STREAM CARDS ── */
+/* STREAM CARDS */
 .stream-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(12px,2vw,24px);margin-top:2rem}
 .stream-card{background:var(--bg2);border:1px solid var(--border2);border-top:3px solid var(--red);border-radius:8px;padding:clamp(1.25rem,2.5vw,2rem)}
 .stream-icon{font-size:clamp(24px,2.5vw,34px);color:var(--red);margin-bottom:0.875rem}
 .stream-name{font-family:var(--ff-head);font-size:clamp(12px,1vw,15px);font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--text);margin-bottom:0.5rem}
 .stream-desc{font-size:clamp(13px,1vw,15px);color:var(--text3);line-height:1.65;font-weight:300}
 
-/* ── ENTRY POINTS ── */
+/* ENTRY POINTS */
 .entry-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(12px,2vw,24px);margin-top:2rem}
 .entry-card{background:var(--bg2);border:1px solid var(--border2);border-radius:8px;padding:clamp(1.25rem,2.5vw,2rem)}
 .entry-tag{font-family:var(--ff-head);font-size:10px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--blue);margin-bottom:0.5rem}
 .entry-name{font-family:var(--ff-head);font-size:clamp(13px,1.1vw,16px);font-weight:700;color:var(--text);margin-bottom:0.5rem}
 .entry-method{font-size:clamp(13px,1vw,15px);color:var(--text2);font-weight:500;margin-bottom:0.4rem}
 .entry-rationale{font-size:clamp(12px,0.95vw,14px);color:var(--text3);line-height:1.6;font-weight:300}
-.entry-note{margin-top:1.75rem;padding:14px 18px;background:var(--bg2);border-left:4px solid var(--ocean);border-radius:0 6px 6px 0;font-size:clamp(13px,1.05vw,16px);color:var(--text2);line-height:1.7;font-weight:300}
 
-/* ── GOVERNANCE ── */
+/* GOVERNANCE */
 .gov-list{display:flex;flex-direction:column;gap:16px;margin-top:2rem;max-width:72ch}
 .gov-item{display:flex;align-items:flex-start;gap:16px}
 .gov-bar{width:5px;min-width:5px;height:24px;background:var(--red);border-radius:2px;margin-top:4px}
 .gov-text{font-size:clamp(14px,1.15vw,17px);color:var(--text2);line-height:1.7;font-weight:300}
 .gov-text strong{font-weight:600;color:var(--text)}
 
-/* ── TABLE ── */
+/* FLOWCHART */
+.fc-container{margin-top:2rem;background:var(--bg2);border:1px solid var(--border2);border-radius:10px;padding:2rem;overflow-x:auto}
+.fc-container svg{display:block;margin:0 auto;max-width:100%;height:auto}
+
+/* TABLE */
 .data-table{width:100%;border-collapse:collapse;margin-top:2rem;font-size:clamp(13px,1vw,16px)}
 .data-table th{font-family:var(--ff-head);font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text3);text-align:left;padding:10px 16px;border-bottom:2px solid var(--border2);background:var(--bg2)}
 .data-table td{padding:12px 16px;border-bottom:1px solid var(--border);color:var(--text2);font-weight:300;vertical-align:top;line-height:1.65}
 .data-table td:first-child{font-family:var(--ff-head);font-size:12px;font-weight:600;color:var(--text);letter-spacing:0.04em;white-space:nowrap}
 .data-table tr:last-child td{border-bottom:none}
 
-/* ── NETWORK GRAPH ── */
-.node-types{display:flex;gap:12px;flex-wrap:wrap;margin-top:1.5rem;margin-bottom:2rem}
-.node-type{display:flex;align-items:center;gap:8px;padding:8px 14px;background:var(--bg2);border:1px solid var(--border2);border-radius:6px;font-size:13px;color:var(--text2)}
-.node-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
-.nd-aff{background:var(--red)}
-.nd-theme{background:var(--blue)}
-.nd-city{background:var(--ocean)}
+/* NETWORK GRAPH INTERACTIVE */
+.graph-shell{margin-top:2rem;display:grid;grid-template-columns:1fr 320px;gap:1.5rem;align-items:start}
+.graph-canvas-wrap{background:var(--bg2);border:1px solid var(--border2);border-radius:10px;overflow:hidden;position:relative}
+#graphCanvas{display:block;width:100%;cursor:grab}
+#graphCanvas:active{cursor:grabbing}
+.graph-controls{display:flex;gap:8px;flex-wrap:wrap;padding:12px 16px;border-bottom:1px solid var(--border);background:var(--bg)}
+.ctrl-chip{font-family:var(--ff-head);font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:5px 12px;border-radius:999px;border:1px solid var(--border2);background:var(--bg2);color:var(--text2);cursor:pointer;transition:all .2s}
+.ctrl-chip.active{background:var(--deep);color:#fff;border-color:var(--deep)}
+.graph-panel{display:flex;flex-direction:column;gap:14px}
+.panel-card{background:var(--bg2);border:1px solid var(--border2);border-radius:8px;padding:1.25rem}
+.panel-title{font-family:var(--ff-head);font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--text3);margin-bottom:0.75rem}
+.panel-body{font-size:13px;color:var(--text2);line-height:1.7;font-weight:300}
+.panel-body strong{font-weight:600;color:var(--text)}
+.gap-list{display:flex;flex-direction:column;gap:6px;margin-top:0.5rem}
+.gap-row{display:flex;align-items:center;justify-content:space-between;font-size:12px}
+.gap-name{color:var(--text2);font-weight:400}
+.gap-score{font-family:var(--ff-head);font-size:10px;font-weight:700;padding:2px 7px;border-radius:4px;background:rgba(237,28,46,0.1);color:var(--red)}
+.legend{display:flex;flex-direction:column;gap:6px}
+.leg-row{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--text2);font-weight:300}
+.leg-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+
+/* INSIGHT BOX */
 .insight-box{margin-top:2rem;padding:1.5rem 1.75rem;background:var(--bg2);border:1px solid var(--border2);border-left:4px solid var(--blue);border-radius:0 8px 8px 0}
 .insight-title{font-family:var(--ff-head);font-size:12px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--blue);margin-bottom:0.75rem}
 .insight-body{font-size:clamp(14px,1.1vw,16px);color:var(--text2);line-height:1.75;font-weight:300}
 .insight-tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:1rem}
 .itag{font-family:var(--ff-head);font-size:10px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;padding:4px 10px;border-radius:4px;background:rgba(0,156,204,0.08);color:var(--blue);border:1px solid rgba(0,156,204,0.2)}
 
-/* ── DESIGN PROCESS ── */
+/* DESIGN PROCESS */
 .steps-list{display:flex;flex-direction:column;gap:0;margin-top:2rem;max-width:72ch}
 .step-item{display:flex;gap:1.75rem;padding:1.5rem 0;border-bottom:1px solid var(--border)}
 .step-item:last-child{border-bottom:none}
 .step-n{font-family:var(--ff-serif);font-size:clamp(28px,2.5vw,40px);font-weight:700;color:var(--red);line-height:1;min-width:40px;flex-shrink:0;padding-top:2px}
-.step-content{}
 .step-name{font-family:var(--ff-head);font-size:clamp(13px,1.1vw,16px);font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--text);margin-bottom:0.4rem}
 .step-desc{font-size:clamp(13px,1.05vw,16px);color:var(--text2);line-height:1.7;font-weight:300}
 
-/* ── TECH STACK ── */
+/* TECH */
 .stack-note{margin-bottom:2rem;padding:14px 18px;background:var(--bg2);border-left:4px solid var(--red);border-radius:0 6px 6px 0;font-size:clamp(13px,1.05vw,16px);color:var(--text2);line-height:1.7;font-weight:300}
 .phase-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(14px,2.5vw,28px);margin-top:2rem}
 .phase-block{background:var(--bg2);border:1px solid var(--border2);border-radius:8px;padding:clamp(1.25rem,2vw,1.75rem)}
 .phase-label{font-family:var(--ff-head);font-size:10px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:0.5rem}
-.ph-1{color:var(--red)}
-.ph-2{color:var(--blue)}
+.ph-1{color:var(--red)}.ph-2{color:var(--blue)}
 .phase-name{font-family:var(--ff-head);font-size:clamp(14px,1.2vw,17px);font-weight:600;color:var(--text);margin-bottom:0.75rem}
 .phase-items{display:flex;flex-direction:column;gap:6px}
 .phase-item{font-size:clamp(13px,1vw,15px);color:var(--text2);font-weight:300;display:flex;align-items:baseline;gap:8px}
 .phase-item::before{content:'';width:4px;height:4px;border-radius:50%;background:var(--border2);flex-shrink:0;margin-top:8px}
 
-/* ── FOOTER ── */
 footer{padding:3rem 0;text-align:center}
 .footer-inner{max-width:var(--max);margin:0 auto;padding:0 6vw}
 .footer-mark{display:inline-flex;align-items:center;gap:10px;margin-bottom:1rem}
-.footer-mark .nav-mark{width:28px;height:28px}
-.footer-mark .nav-mark span{font-size:10px}
 .footer-wordmark{font-family:var(--ff-head);font-size:11px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--text3)}
 .footer-note{font-size:13px;color:var(--text3);font-weight:300}
 
-@media(max-width:768px){
+@media(max-width:900px){
   .stream-grid,.entry-grid,.phase-grid{grid-template-columns:1fr}
+  .graph-shell{grid-template-columns:1fr}
   .nav-links{display:none}
 }
 </style>
@@ -154,6 +168,7 @@ footer{padding:3rem 0;text-align:center}
       <a href="#streams">Streams</a>
       <a href="#entry-points">Entry Points</a>
       <a href="#governance">Governance</a>
+      <a href="#flowchart">Pathway</a>
       <a href="#network">Network Graph</a>
       <a href="#design">Design Process</a>
       <a href="#tech">Technology</a>
@@ -163,18 +178,16 @@ footer{padding:3rem 0;text-align:center}
 
 <div class="page-wrap">
 
-  <!-- HERO -->
   <section class="hero">
     <div class="hero-label">City to City · Resource Infrastructure</div>
     <h1 class="hero-title">A shared resource network<br>for <em>City to City</em></h1>
     <p class="hero-lead">A system that lets hub city affiliates contribute resources on their own terms — and lets anyone in the network find what others have built. Built entirely within Google Workspace. Governed by the people it serves. Designed before it is built.</p>
     <div class="page-map">
-      <a href="#streams" class="page-pill"><span class="page-badge p1">Page 1</span><strong>Streams · Entry Points · Governance</strong></a>
+      <a href="#streams" class="page-pill"><span class="page-badge p1">Page 1</span><strong>Streams · Entry Points · Governance · Pathway</strong></a>
       <a href="#network" class="page-pill"><span class="page-badge p2">Page 2</span><strong>Network Graph · Design Process · Technology</strong></a>
     </div>
   </section>
 
-  <!-- PAGE 1 DIVIDER -->
   <div style="padding:2.5rem 0 0;display:flex;align-items:center;gap:14px">
     <span class="page-badge p1">Page 1</span>
     <span style="font-family:var(--ff-head);font-size:11px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--text3)">Foundation</span>
@@ -183,9 +196,7 @@ footer{padding:3rem 0;text-align:center}
   <!-- THREE STREAMS -->
   <section class="doc-section" id="streams">
     <div class="section-header">
-      <div class="section-super">
-        <span class="section-label">Three Resource Streams</span>
-      </div>
+      <div class="section-super"><span class="section-label">Three Resource Streams</span></div>
       <h2 class="section-title">One network, three distinct <em>communities</em></h2>
       <p class="section-lead">Each stream has its own intake site, file storage, metadata database, and local coordinator.</p>
     </div>
@@ -211,9 +222,7 @@ footer{padding:3rem 0;text-align:center}
   <!-- THREE ENTRY POINTS -->
   <section class="doc-section" id="entry-points">
     <div class="section-header">
-      <div class="section-super">
-        <span class="section-label">Three Visual Entry Points</span>
-      </div>
+      <div class="section-super"><span class="section-label">Three Visual Entry Points</span></div>
       <h2 class="section-title">Each stream, its own <em>way in</em></h2>
       <p class="section-lead">Each visual entry point is an invitation into a searchable resource library — not a replacement for it. The library is the primary interface for finding and accessing specific materials.</p>
     </div>
@@ -242,9 +251,7 @@ footer{padding:3rem 0;text-align:center}
   <!-- GOVERNANCE -->
   <section class="doc-section" id="governance">
     <div class="section-header">
-      <div class="section-super">
-        <span class="section-label">Governance</span>
-      </div>
+      <div class="section-super"><span class="section-label">Governance</span></div>
       <h2 class="section-title">The system serves those who <em>built</em> it</h2>
     </div>
     <div class="gov-list">
@@ -253,6 +260,78 @@ footer{padding:3rem 0;text-align:center}
       <div class="gov-item"><div class="gov-bar"></div><div class="gov-text"><strong>Withdrawal is always possible.</strong> Affiliates can request removal of any resource at any time through their stream coordinator.</div></div>
       <div class="gov-item"><div class="gov-bar"></div><div class="gov-text"><strong>Participation is invited, not required.</strong> The network grows through trust, not mandate.</div></div>
       <div class="gov-item"><div class="gov-bar"></div><div class="gov-text"><strong>Each stream governs itself.</strong> Stream coordinators hold full triage and approval authority within their stream.</div></div>
+    </div>
+  </section>
+
+  <!-- SUBMISSION PATHWAY FLOWCHART -->
+  <section class="doc-section" id="flowchart">
+    <div class="section-header">
+      <div class="section-super"><span class="section-label">Submission Pathway</span></div>
+      <h2 class="section-title">From submission to <em>visible</em></h2>
+      <p class="section-lead">Hub City stream — representative of all three streams. A resource travels from affiliate submission through automated processing and coordinator review before it becomes visible in the network.</p>
+    </div>
+    <div class="fc-container">
+      <svg width="800" viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Submission pathway flowchart">
+        <defs>
+          <marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path d="M2 2L8 5L2 8" fill="none" stroke="#9AA4AF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </marker>
+          <marker id="ah-g" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path d="M2 2L8 5L2 8" fill="none" stroke="#1D9E75" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </marker>
+        </defs>
+        <!-- Row 1: Affiliate -->
+        <rect x="300" y="10" width="200" height="52" rx="10" fill="#263842" stroke="#1a262f" stroke-width="1"/>
+        <text x="400" y="32" text-anchor="middle" dominant-baseline="central" font-family="Montserrat,sans-serif" font-size="13" font-weight="700" fill="#ffffff" letter-spacing="0.06em">AFFILIATE</text>
+        <text x="400" y="52" text-anchor="middle" dominant-baseline="central" font-family="Libre Franklin,sans-serif" font-size="11" font-weight="300" fill="#9AA4AF">Submits resource + metadata</text>
+        <!-- arrow 1→2 -->
+        <line x1="400" y1="62" x2="400" y2="83" stroke="#9AA4AF" stroke-width="1.5" marker-end="url(#ah)"/>
+        <!-- Row 2: Google Form -->
+        <rect x="294" y="83" width="212" height="52" rx="10" fill="#1D6B99" stroke="#175a80" stroke-width="1"/>
+        <text x="400" y="105" text-anchor="middle" dominant-baseline="central" font-family="Montserrat,sans-serif" font-size="13" font-weight="700" fill="#ffffff" letter-spacing="0.06em">GOOGLE FORM</text>
+        <text x="400" y="124" text-anchor="middle" dominant-baseline="central" font-family="Libre Franklin,sans-serif" font-size="11" font-weight="300" fill="#cce4f4">Title · language · permissions</text>
+        <!-- branch left to Drive -->
+        <path d="M350 135 L350 158 L170 158 L170 178" fill="none" stroke="#9AA4AF" stroke-width="1.5" marker-end="url(#ah)"/>
+        <!-- branch right to Apps Script -->
+        <path d="M450 135 L450 158 L630 158 L630 178" fill="none" stroke="#9AA4AF" stroke-width="1.5" marker-end="url(#ah)"/>
+        <!-- Row 3 Left: Google Drive -->
+        <rect x="64" y="178" width="212" height="52" rx="10" fill="#2a7fa8" stroke="#1f6080" stroke-width="1"/>
+        <text x="170" y="200" text-anchor="middle" dominant-baseline="central" font-family="Montserrat,sans-serif" font-size="13" font-weight="700" fill="#ffffff" letter-spacing="0.06em">GOOGLE DRIVE</text>
+        <text x="170" y="219" text-anchor="middle" dominant-baseline="central" font-family="Libre Franklin,sans-serif" font-size="11" font-weight="300" fill="#cce8f4">File in affiliate folder</text>
+        <!-- Row 3 Right: Apps Script -->
+        <rect x="524" y="178" width="212" height="52" rx="10" fill="#50545D" stroke="#3d4148" stroke-width="1"/>
+        <text x="630" y="200" text-anchor="middle" dominant-baseline="central" font-family="Montserrat,sans-serif" font-size="13" font-weight="700" fill="#ffffff" letter-spacing="0.06em">APPS SCRIPT</text>
+        <text x="630" y="219" text-anchor="middle" dominant-baseline="central" font-family="Libre Franklin,sans-serif" font-size="11" font-weight="300" fill="#c4c4c4">Confirmation email sent</text>
+        <!-- converge to Sheet -->
+        <path d="M170 230 L170 258 L310 258 L310 272" fill="none" stroke="#9AA4AF" stroke-width="1.5" marker-end="url(#ah)"/>
+        <path d="M630 230 L630 258 L490 258 L490 272" fill="none" stroke="#9AA4AF" stroke-width="1.5" marker-end="url(#ah)"/>
+        <!-- Row 4: Google Sheet -->
+        <rect x="268" y="272" width="264" height="52" rx="10" fill="#C1830A" stroke="#a06e08" stroke-width="1"/>
+        <text x="400" y="294" text-anchor="middle" dominant-baseline="central" font-family="Montserrat,sans-serif" font-size="13" font-weight="700" fill="#ffffff" letter-spacing="0.06em">GOOGLE SHEET</text>
+        <text x="400" y="313" text-anchor="middle" dominant-baseline="central" font-family="Libre Franklin,sans-serif" font-size="11" font-weight="300" fill="#fde8b4">Metadata row · triage status</text>
+        <!-- arrow 4→5 -->
+        <line x1="400" y1="324" x2="400" y2="345" stroke="#9AA4AF" stroke-width="1.5" marker-end="url(#ah)"/>
+        <!-- Row 5: CTC Coordinator -->
+        <rect x="280" y="345" width="240" height="52" rx="10" fill="#ED1C2E" stroke="#c51626" stroke-width="1"/>
+        <text x="400" y="367" text-anchor="middle" dominant-baseline="central" font-family="Montserrat,sans-serif" font-size="13" font-weight="700" fill="#ffffff" letter-spacing="0.06em">CTC COORDINATOR</text>
+        <text x="400" y="386" text-anchor="middle" dominant-baseline="central" font-family="Libre Franklin,sans-serif" font-size="11" font-weight="300" fill="#ffc0c5">Reviews · approves · returns</text>
+        <!-- Left: Needs Revision -->
+        <rect x="20" y="353" width="160" height="44" rx="8" fill="#1e2d36" stroke="#2e4452" stroke-width="1"/>
+        <text x="100" y="371" text-anchor="middle" dominant-baseline="central" font-family="Montserrat,sans-serif" font-size="10" font-weight="700" fill="#9AA4AF" letter-spacing="0.06em">NEEDS REVISION</text>
+        <text x="100" y="387" text-anchor="middle" dominant-baseline="central" font-family="Libre Franklin,sans-serif" font-size="10" font-weight="300" fill="#6a7a84">Returned to affiliate</text>
+        <path d="M180 375 L280 375" fill="none" stroke="#9AA4AF" stroke-width="1.2" stroke-dasharray="5 3" marker-end="url(#ah)"/>
+        <!-- Right: Approved -->
+        <rect x="620" y="345" width="160" height="52" rx="8" fill="#0a4f34" stroke="#0e6644" stroke-width="1"/>
+        <text x="700" y="363" text-anchor="middle" dominant-baseline="central" font-family="Montserrat,sans-serif" font-size="10" font-weight="700" fill="#6ee7b7" letter-spacing="0.06em">APPROVED</text>
+        <text x="700" y="379" text-anchor="middle" dominant-baseline="central" font-family="Libre Franklin,sans-serif" font-size="10" font-weight="300" fill="#a7f3d0">Internal or global</text>
+        <text x="700" y="393" text-anchor="middle" dominant-baseline="central" font-family="Libre Franklin,sans-serif" font-size="10" font-weight="300" fill="#a7f3d0">Public flag = true</text>
+        <path d="M520 371 L620 371" fill="none" stroke="#1D9E75" stroke-width="1.5" marker-end="url(#ah-g)"/>
+        <!-- Bottom: Network Visible -->
+        <line x1="700" y1="397" x2="700" y2="418" stroke="#1D9E75" stroke-width="1.5" marker-end="url(#ah-g)"/>
+        <rect x="594" y="418" width="212" height="52" rx="10" fill="#0F6E56" stroke="#085041" stroke-width="1"/>
+        <text x="700" y="440" text-anchor="middle" dominant-baseline="central" font-family="Montserrat,sans-serif" font-size="13" font-weight="700" fill="#ffffff" letter-spacing="0.06em">NETWORK VISIBLE</text>
+        <text x="700" y="459" text-anchor="middle" dominant-baseline="central" font-family="Libre Franklin,sans-serif" font-size="11" font-weight="300" fill="#9FE1CB">Searchable · Hub City entry point</text>
+      </svg>
     </div>
   </section>
 
@@ -265,41 +344,60 @@ footer{padding:3rem 0;text-align:center}
   <!-- NETWORK GRAPH -->
   <section class="doc-section" id="network">
     <div class="section-header">
-      <div class="section-super">
-        <span class="section-label">Network Graph — Second Level</span>
-      </div>
+      <div class="section-super"><span class="section-label">Network Graph — Second Level</span></div>
       <h2 class="section-title">For coordinators and <em>strategists</em></h2>
-      <p class="section-lead">The network graph sits behind each visual entry point. It is not the primary way in for most users — it is an analytical tool for people asking pattern questions across the full corpus of approved resources. Each stream has its own per-stream graph.</p>
+      <p class="section-lead">The network graph sits behind each visual entry point — an analytical tool for people asking pattern questions across the full corpus of approved resources. Node size encodes degree. Switch the colour mode to see which nodes shift from visually prominent to strategically important. Drag any node to explore. Each stream has its own graph.</p>
     </div>
 
-    <div class="node-types">
-      <div class="node-type"><div class="node-dot nd-aff"></div>Affiliates</div>
-      <div class="node-type"><div class="node-dot nd-theme"></div>Themes &amp; Categories</div>
-      <div class="node-type"><div class="node-dot nd-city"></div>Cities (secondary tags)</div>
+    <div class="graph-shell">
+      <div class="graph-canvas-wrap">
+        <div class="graph-controls" id="graphControls">
+          <span style="font-family:var(--ff-head);font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--text3);align-self:center;margin-right:4px">Colour by</span>
+          <button class="ctrl-chip active" data-mode="type">Node Type</button>
+          <button class="ctrl-chip" data-mode="degree">Degree</button>
+          <button class="ctrl-chip" data-mode="betweenness">Betweenness</button>
+          <button class="ctrl-chip" data-mode="clustering">Clustering</button>
+          <button class="ctrl-chip" data-mode="eigenvector">Eigenvector</button>
+        </div>
+        <canvas id="graphCanvas" width="760" height="500"></canvas>
+      </div>
+      <div class="graph-panel">
+        <div class="panel-card">
+          <div class="panel-title">Selected node</div>
+          <div class="panel-body" id="nodeDetail">Click any node to see its centrality scores.</div>
+        </div>
+        <div class="panel-card">
+          <div class="panel-title">Legend</div>
+          <div class="legend">
+            <div class="leg-row"><div class="leg-dot" style="background:#ED1C2E"></div>Hub cities</div>
+            <div class="leg-row"><div class="leg-dot" style="background:#009CCC"></div>Resource themes</div>
+            <div class="leg-row"><div class="leg-dot" style="background:#1D9E75"></div>Asset types</div>
+          </div>
+          <div style="margin-top:10px;font-size:11px;color:var(--text3);font-weight:300;line-height:1.6">Node size = degree. Edge weight = resource count.</div>
+        </div>
+        <div class="panel-card">
+          <div class="panel-title">Gap nodes <span style="font-size:10px;font-weight:400;text-transform:none;letter-spacing:0;color:var(--text3)">(below 15% on selected metric)</span></div>
+          <div class="gap-list" id="gapList"></div>
+        </div>
+      </div>
     </div>
-    <p style="font-size:clamp(13px,1.05vw,16px);color:var(--text2);font-weight:300;margin-bottom:1.5rem;max-width:68ch">Edge weight is set by resource count — a theme connected to an affiliate by fifteen resources renders differently from one connected by one.</p>
 
-    <table class="data-table">
+    <table class="data-table" style="margin-top:2.5rem">
       <thead><tr><th>Calculation</th><th>What it reveals</th></tr></thead>
       <tbody>
-        <tr><td>Degree centrality</td><td>How many connections does this node carry?</td></tr>
-        <tr><td>Betweenness</td><td>Does this node bridge separate clusters?</td></tr>
-        <tr><td>Clustering coefficient</td><td>How connected are a node's neighbours to each other?</td></tr>
-        <tr><td>Eigenvector</td><td>Are this node's connections themselves well-connected?</td></tr>
+        <tr><td>Degree centrality</td><td>How many connections does this node carry? High-degree cities are hubs of activity. Degree 1–2 nodes are isolated — often the most important strategic finding.</td></tr>
+        <tr><td>Betweenness</td><td>Which nodes sit on the most paths between others? A theme with high betweenness bridges separate clusters — often theologically or strategically the most interesting finding.</td></tr>
+        <tr><td>Clustering coefficient</td><td>How tightly connected are a node's neighbours? High clustering = tight community. Low clustering on a well-connected node = genuine broker between worlds.</td></tr>
+        <tr><td>Eigenvector</td><td>Not just how many connections, but how important are they? A resource connected to many high-value resources scores higher than one connected to many peripheral ones. This is what PageRank is built on.</td></tr>
       </tbody>
     </table>
 
-    <div class="insight-box" style="margin-top:2rem">
-      <div class="insight-title">Metadata Insight Layer</div>
-      <div class="insight-body">Gaps — nodes with near-zero connections — are surfaced explicitly. A metadata insight layer reads approved metadata rows (never file content) and generates strategic briefs: gap analysis, translation priorities, bridge resource identification, cluster narratives.<br><br>The insight layer calls the Claude API via Apps Script UrlFetchApp. No file content is ever sent — only approved metadata fields.</div>
+    <div class="insight-box">
+      <div class="insight-title">Metadata Insight Layer — Claude API</div>
+      <div class="insight-body">Gaps — nodes with near-zero connections — are surfaced explicitly. The insight layer reads approved metadata rows (never file content) and generates strategic briefs: gap analysis, translation priorities, bridge resource identification, cluster narratives.<br><br>The layer calls the Claude API via Apps Script <code style="font-size:0.9em;background:rgba(0,156,204,0.08);padding:1px 5px;border-radius:3px">UrlFetchApp</code>. No file content is ever sent — only approved metadata fields. A button labelled "Generate network insights" on the admin dashboard sends the current Sheet data as a structured prompt and returns an interpretive brief that renders next to the graph, entirely within the Google ecosystem.</div>
       <div class="insight-tags">
-        <span class="itag">Title</span>
-        <span class="itag">Description</span>
-        <span class="itag">Category</span>
-        <span class="itag">Language</span>
-        <span class="itag">City</span>
-        <span class="itag">Affiliate</span>
-        <span class="itag">Status</span>
+        <span class="itag">Title</span><span class="itag">Description</span><span class="itag">Category</span>
+        <span class="itag">Language</span><span class="itag">City</span><span class="itag">Affiliate</span><span class="itag">Status</span>
       </div>
     </div>
   </section>
@@ -307,61 +405,26 @@ footer{padding:3rem 0;text-align:center}
   <!-- DESIGN PROCESS -->
   <section class="doc-section" id="design">
     <div class="section-header">
-      <div class="section-super">
-        <span class="section-label">Human-Centred Design Process</span>
-      </div>
+      <div class="section-super"><span class="section-label">Human-Centred Design Process</span></div>
       <h2 class="section-title"><em>Designed</em> before it is built</h2>
       <p class="section-lead">The category vocabulary, permission logic, and workflow emerge from the people who will use the system. Timeline is process-driven, not date-driven.</p>
     </div>
     <div class="steps-list">
-      <div class="step-item">
-        <div class="step-n">01</div>
-        <div class="step-content">
-          <div class="step-name">Team Alignment</div>
-          <div class="step-desc">Individual conversations with each stream team lead before any group session. The goal is whether the direction is right — not a briefing.</div>
-        </div>
-      </div>
-      <div class="step-item">
-        <div class="step-n">02</div>
-        <div class="step-content">
-          <div class="step-name">Stream Working Sessions</div>
-          <div class="step-desc">One 60-minute session per stream: what do you collect, who owns it, what do you call it? Output: draft category list, coordinator nomination, affiliate contacts.</div>
-        </div>
-      </div>
-      <div class="step-item">
-        <div class="step-n">03</div>
-        <div class="step-content">
-          <div class="step-name">Affiliate Outreach</div>
-          <div class="step-desc">Through existing stream coordinator relationships. The message: we are designing this together before anything is built.</div>
-        </div>
-      </div>
-      <div class="step-item">
-        <div class="step-n">04</div>
-        <div class="step-content">
-          <div class="step-name">Participatory Survey</div>
-          <div class="step-desc">Affiliates vote on candidate category tags, permission options, and language fields.</div>
-        </div>
-      </div>
-      <div class="step-item">
-        <div class="step-n">05</div>
-        <div class="step-content">
-          <div class="step-name">Schema Consolidation</div>
-          <div class="step-desc">Controlled vocabulary agreed across all three streams. Build decision follows.</div>
-        </div>
-      </div>
+      <div class="step-item"><div class="step-n">01</div><div><div class="step-name">Team Alignment</div><div class="step-desc">Individual conversations with each stream team lead before any group session. The goal is whether the direction is right — not a briefing.</div></div></div>
+      <div class="step-item"><div class="step-n">02</div><div><div class="step-name">Stream Working Sessions</div><div class="step-desc">One 60-minute session per stream: what do you collect, who owns it, what do you call it? Output: draft category list, coordinator nomination, affiliate contacts.</div></div></div>
+      <div class="step-item"><div class="step-n">03</div><div><div class="step-name">Affiliate Outreach</div><div class="step-desc">Through existing stream coordinator relationships. The message: we are designing this together before anything is built.</div></div></div>
+      <div class="step-item"><div class="step-n">04</div><div><div class="step-name">Participatory Survey</div><div class="step-desc">Affiliates vote on candidate category tags, permission options, and language fields.</div></div></div>
+      <div class="step-item"><div class="step-n">05</div><div><div class="step-name">Schema Consolidation</div><div class="step-desc">Controlled vocabulary agreed across all three streams. Build decision follows.</div></div></div>
     </div>
   </section>
 
   <!-- TECHNOLOGY -->
   <section class="doc-section" id="tech">
     <div class="section-header">
-      <div class="section-super">
-        <span class="section-label">Technology Stack</span>
-      </div>
+      <div class="section-super"><span class="section-label">Technology Stack</span></div>
       <h2 class="section-title">Entirely within <em>Google Workspace</em></h2>
     </div>
     <div class="stack-note">No external dependencies required for Phase 1. All infrastructure runs on tools already in use across the network.</div>
-
     <table class="data-table">
       <thead><tr><th>Component</th><th>Role</th></tr></thead>
       <tbody>
@@ -371,7 +434,6 @@ footer{padding:3rem 0;text-align:center}
         <tr><td>Highcharts + Claude API</td><td>Network graph per-stream and cross-stream, metadata insight layer</td></tr>
       </tbody>
     </table>
-
     <div class="phase-grid">
       <div class="phase-block">
         <div class="phase-label ph-1">Phase 1 — Foundation</div>
@@ -409,5 +471,309 @@ footer{padding:3rem 0;text-align:center}
   </div>
 </footer>
 
+<script>
+// ── NETWORK GRAPH SIMULATION ──
+(function(){
+  const canvas = document.getElementById('graphCanvas');
+  const ctx = canvas.getContext('2d');
+  const W = canvas.width, H = canvas.height;
+
+  // Node definitions
+  const CITIES = ['Sydney','Seoul','Nairobi','Bogotá','Kathmandu'];
+  const THEMES = ['Gospel DNA','Leadership Dev','City Engagement','Church Multiplication','Coaching Practice','Operations','Cross-cultural','Disciple-Making','Persecuted Contexts','Translation'];
+  const ASSETS = ['Strategy Doc','Curriculum','Case Study','Tool','Guide'];
+
+  let nodes = [];
+  let edges = [];
+  let colourMode = 'type';
+  let selectedNode = null;
+  let dragging = null;
+  let dragOffX = 0, dragOffY = 0;
+  let animFrame;
+
+  function initGraph(){
+    nodes = [];
+    // Cities
+    CITIES.forEach((name,i)=>{
+      const a = (i/CITIES.length)*Math.PI*2 - Math.PI/2;
+      nodes.push({id:name,type:'city',x:W/2+Math.cos(a)*160,y:H/2+Math.sin(a)*130,vx:0,vy:0,label:name});
+    });
+    // Themes
+    THEMES.forEach((name,i)=>{
+      const a = (i/THEMES.length)*Math.PI*2 - Math.PI/2;
+      nodes.push({id:name,type:'theme',x:W/2+Math.cos(a)*280,y:H/2+Math.sin(a)*220,vx:0,vy:0,label:name});
+    });
+    // Assets
+    ASSETS.forEach((name,i)=>{
+      const a = (i/ASSETS.length)*Math.PI*2;
+      nodes.push({id:name,type:'asset',x:W/2+Math.cos(a)*80,y:H/2+Math.sin(a)*60,vx:0,vy:0,label:name});
+    });
+
+    // Edges: [from, to, weight]
+    const raw = [
+      ['Sydney','Gospel DNA',8],['Sydney','Leadership Dev',5],['Sydney','City Engagement',6],['Sydney','Strategy Doc',4],['Sydney','Tool',3],
+      ['Seoul','Gospel DNA',10],['Seoul','Church Multiplication',7],['Seoul','Disciple-Making',6],['Seoul','Strategy Doc',5],['Seoul','Curriculum',4],
+      ['Nairobi','Leadership Dev',9],['Nairobi','City Engagement',7],['Nairobi','Church Multiplication',5],['Nairobi','Cross-cultural',8],['Nairobi','Case Study',6],['Nairobi','Guide',3],
+      ['Bogotá','Coaching Practice',9],['Bogotá','Gospel DNA',6],['Bogotá','Disciple-Making',7],['Bogotá','Case Study',5],['Bogotá','Curriculum',4],
+      ['Kathmandu','Persecuted Contexts',10],['Kathmandu','Cross-cultural',7],['Kathmandu','Coaching Practice',4],['Kathmandu','Guide',5],
+      ['Gospel DNA','Strategy Doc',6],['Gospel DNA','Curriculum',5],
+      ['Leadership Dev','Curriculum',7],['Leadership Dev','Guide',5],['Leadership Dev','Case Study',4],
+      ['City Engagement','Tool',6],['City Engagement','Strategy Doc',5],
+      ['Church Multiplication','Curriculum',6],['Church Multiplication','Case Study',5],
+      ['Coaching Practice','Tool',7],['Coaching Practice','Guide',6],['Coaching Practice','Case Study',5],
+      ['Operations','Tool',5],['Operations','Strategy Doc',4],
+      ['Cross-cultural','Guide',6],['Cross-cultural','Curriculum',4],
+      ['Disciple-Making','Case Study',5],['Disciple-Making','Curriculum',4],
+      ['Persecuted Contexts','Guide',7],['Persecuted Contexts','Case Study',5],
+      ['Translation','Guide',4],
+    ];
+    edges = raw.map(([a,b,w])=>({a,b,w}));
+  }
+
+  function getNode(id){ return nodes.find(n=>n.id===id); }
+
+  function computeCentralities(){
+    const n = nodes;
+    // Degree
+    n.forEach(nd=>nd.degree=0);
+    edges.forEach(e=>{
+      const a=getNode(e.a),b=getNode(e.b);
+      if(a)a.degree+=e.w;
+      if(b)b.degree+=e.w;
+    });
+    // Eigenvector (power iteration)
+    n.forEach(nd=>nd.eigen=1);
+    for(let iter=0;iter<20;iter++){
+      const next={};
+      n.forEach(nd=>next[nd.id]=0);
+      edges.forEach(e=>{
+        const a=getNode(e.a),b=getNode(e.b);
+        if(a&&b){next[a.id]+=b.eigen*e.w;next[b.id]+=a.eigen*e.w;}
+      });
+      let mag=Math.sqrt(n.reduce((s,nd)=>s+next[nd.id]**2,0))||1;
+      n.forEach(nd=>nd.eigen=next[nd.id]/mag);
+    }
+    // Betweenness (BFS on unweighted adjacency)
+    n.forEach(nd=>nd.between=0);
+    const adj={};
+    n.forEach(nd=>adj[nd.id]=[]);
+    edges.forEach(e=>{adj[e.a]&&adj[e.a].push(e.b);adj[e.b]&&adj[e.b].push(e.a);});
+    n.forEach(src=>{
+      const dist={},pred={},sigma={},delta={},stack=[];
+      n.forEach(nd=>{dist[nd.id]=-1;sigma[nd.id]=0;delta[nd.id]=0;pred[nd.id]=[];});
+      dist[src.id]=0;sigma[src.id]=1;
+      const q=[src.id];
+      while(q.length){
+        const v=q.shift();stack.push(v);
+        (adj[v]||[]).forEach(w=>{
+          if(dist[w]<0){dist[w]=dist[v]+1;q.push(w);}
+          if(dist[w]===dist[v]+1){sigma[w]+=sigma[v];pred[w].push(v);}
+        });
+      }
+      while(stack.length){
+        const w=stack.pop();
+        pred[w].forEach(v=>{delta[v]+=sigma[v]/sigma[w]*(1+delta[w]);});
+        if(w!==src.id){const nd=getNode(w);if(nd)nd.between+=delta[w];}
+      }
+    });
+    // Clustering coefficient
+    n.forEach(nd=>{
+      const nbrs=(adj[nd.id]||[]);
+      const k=nbrs.length;
+      if(k<2){nd.cluster=0;return;}
+      let tri=0;
+      for(let i=0;i<nbrs.length;i++)
+        for(let j=i+1;j<nbrs.length;j++)
+          if((adj[nbrs[i]]||[]).includes(nbrs[j]))tri++;
+      nd.cluster=2*tri/(k*(k-1));
+    });
+    // Normalise all to [0,1]
+    ['degree','between','eigen','cluster'].forEach(key=>{
+      const vals=n.map(nd=>nd[key]);
+      const mx=Math.max(...vals)||1;
+      n.forEach(nd=>nd[key+'N']=nd[key]/mx);
+    });
+  }
+
+  function metricValue(nd){
+    if(colourMode==='degree')return nd.degreeN;
+    if(colourMode==='betweenness')return nd.betweenN;
+    if(colourMode==='clustering')return nd.clusterN;
+    if(colourMode==='eigenvector')return nd.eigenN;
+    return null;
+  }
+
+  function nodeColour(nd){
+    if(colourMode==='type'){
+      if(nd.type==='city')return'#ED1C2E';
+      if(nd.type==='theme')return'#009CCC';
+      return'#1D9E75';
+    }
+    const v=metricValue(nd);
+    // heat: low=slate, high=red
+    const r=Math.round(38+v*(237-38));
+    const g=Math.round(56+v*(28-56));
+    const b=Math.round(66+v*(46-66));
+    return`rgb(${r},${g},${b})`;
+  }
+
+  function nodeRadius(nd){
+    return 7+nd.degreeN*18;
+  }
+
+  function physics(){
+    const repulse=6000, attract=0.012, damp=0.82, gravity=0.006;
+    nodes.forEach(a=>{
+      if(a===dragging)return;
+      nodes.forEach(b=>{
+        if(a===b)return;
+        const dx=a.x-b.x,dy=a.y-b.y;
+        const d2=dx*dx+dy*dy+1;
+        const f=repulse/d2;
+        a.vx+=dx*f;a.vy+=dy*f;
+      });
+      // gravity to centre
+      a.vx+=(W/2-a.x)*gravity;
+      a.vy+=(H/2-a.y)*gravity;
+      a.vx*=damp;a.vy*=damp;
+      a.x+=a.vx;a.y+=a.vy;
+      a.x=Math.max(30,Math.min(W-30,a.x));
+      a.y=Math.max(30,Math.min(H-30,a.y));
+    });
+    edges.forEach(e=>{
+      const a=getNode(e.a),b=getNode(e.b);
+      if(!a||!b)return;
+      const dx=b.x-a.x,dy=b.y-a.y;
+      const d=Math.sqrt(dx*dx+dy*dy)||1;
+      const target=90-e.w*2.5;
+      const diff=(d-target)*attract;
+      const fx=dx/d*diff,fy=dy/d*diff;
+      if(a!==dragging){a.vx+=fx;a.vy+=fy;}
+      if(b!==dragging){b.vx-=fx;b.vy-=fy;}
+    });
+  }
+
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    // edges
+    edges.forEach(e=>{
+      const a=getNode(e.a),b=getNode(e.b);
+      if(!a||!b)return;
+      ctx.beginPath();
+      ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);
+      ctx.strokeStyle=`rgba(154,164,175,${0.15+e.w*0.025})`;
+      ctx.lineWidth=0.5+e.w*0.12;
+      ctx.stroke();
+    });
+    // nodes
+    nodes.forEach(nd=>{
+      const r=nodeRadius(nd);
+      const col=nodeColour(nd);
+      const isSel=nd===selectedNode;
+      ctx.beginPath();ctx.arc(nd.x,nd.y,r,0,Math.PI*2);
+      ctx.fillStyle=col;
+      ctx.globalAlpha=0.9;
+      ctx.fill();
+      if(isSel){
+        ctx.strokeStyle='#fff';ctx.lineWidth=2.5;ctx.stroke();
+        ctx.beginPath();ctx.arc(nd.x,nd.y,r+5,0,Math.PI*2);
+        ctx.strokeStyle=col;ctx.lineWidth=1.5;ctx.globalAlpha=0.4;ctx.stroke();
+      }
+      ctx.globalAlpha=1;
+      // label
+      ctx.fillStyle='#263842';
+      ctx.font=`500 ${Math.max(9,Math.min(12,r*0.9))}px Montserrat,sans-serif`;
+      ctx.textAlign='center';
+      ctx.textBaseline='middle';
+      const lw=ctx.measureText(nd.label).width;
+      ctx.fillStyle='rgba(255,255,255,0.85)';
+      ctx.fillRect(nd.x-lw/2-3,nd.y+r+3,lw+6,14);
+      ctx.fillStyle='#263842';
+      ctx.fillText(nd.label,nd.x,nd.y+r+10);
+    });
+  }
+
+  function updatePanels(){
+    // gap list
+    const metric = colourMode==='type'?'degreeN':
+      colourMode==='degree'?'degreeN':
+      colourMode==='betweenness'?'betweenN':
+      colourMode==='clustering'?'clusterN':'eigenN';
+    const sorted=[...nodes].sort((a,b)=>a[metric]-b[metric]);
+    const gaps=sorted.filter(n=>n[metric]<0.15);
+    const gapEl=document.getElementById('gapList');
+    gapEl.innerHTML=gaps.length?gaps.map(n=>`
+      <div class="gap-row">
+        <span class="gap-name">${n.label}</span>
+        <span class="gap-score">${(n[metric]*100).toFixed(0)}%</span>
+      </div>`).join(''):'<div style="font-size:12px;color:var(--text3);font-weight:300">No gap nodes on this metric.</div>';
+    // node detail
+    if(selectedNode){
+      const nd=selectedNode;
+      document.getElementById('nodeDetail').innerHTML=`
+        <strong>${nd.label}</strong><br>
+        <span style="font-size:11px;font-family:var(--ff-head);letter-spacing:0.08em;text-transform:uppercase;color:var(--text3)">${nd.type}</span><br><br>
+        Degree: <strong>${(nd.degreeN*100).toFixed(0)}%</strong><br>
+        Betweenness: <strong>${(nd.betweenN*100).toFixed(0)}%</strong><br>
+        Clustering: <strong>${(nd.clusterN*100).toFixed(0)}%</strong><br>
+        Eigenvector: <strong>${(nd.eigenN*100).toFixed(0)}%</strong>`;
+    }
+  }
+
+  function loop(){
+    physics();draw();updatePanels();
+    animFrame=requestAnimationFrame(loop);
+  }
+
+  function hitTest(x,y){
+    for(let i=nodes.length-1;i>=0;i--){
+      const nd=nodes[i];
+      const r=nodeRadius(nd);
+      if((x-nd.x)**2+(y-nd.y)**2<=r*r)return nd;
+    }
+    return null;
+  }
+
+  function getXY(e){
+    const rect=canvas.getBoundingClientRect();
+    const scaleX=canvas.width/rect.width;
+    const scaleY=canvas.height/rect.height;
+    const src=e.touches?e.touches[0]:e;
+    return{x:(src.clientX-rect.left)*scaleX,y:(src.clientY-rect.top)*scaleY};
+  }
+
+  canvas.addEventListener('mousedown',e=>{
+    const {x,y}=getXY(e);
+    const nd=hitTest(x,y);
+    if(nd){dragging=nd;dragOffX=x-nd.x;dragOffY=y-nd.y;nd.vx=0;nd.vy=0;}
+  });
+  canvas.addEventListener('mousemove',e=>{
+    if(dragging){const {x,y}=getXY(e);dragging.x=x-dragOffX;dragging.y=y-dragOffY;}
+  });
+  canvas.addEventListener('mouseup',e=>{
+    const {x,y}=getXY(e);
+    if(dragging&&Math.abs(x-dragging.x-dragOffX)<4&&Math.abs(y-dragging.y-dragOffY)<4){
+      selectedNode=selectedNode===dragging?null:dragging;
+    }
+    dragging=null;
+  });
+  canvas.addEventListener('touchstart',e=>{e.preventDefault();const {x,y}=getXY(e);const nd=hitTest(x,y);if(nd){dragging=nd;dragOffX=x-nd.x;dragOffY=y-nd.y;}},{passive:false});
+  canvas.addEventListener('touchmove',e=>{e.preventDefault();if(dragging){const {x,y}=getXY(e);dragging.x=x-dragOffX;dragging.y=y-dragOffY;}},{passive:false});
+  canvas.addEventListener('touchend',()=>{dragging=null;});
+
+  document.getElementById('graphControls').addEventListener('click',e=>{
+    const btn=e.target.closest('.ctrl-chip');
+    if(!btn)return;
+    document.querySelectorAll('.ctrl-chip').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    colourMode=btn.dataset.mode;
+    updatePanels();
+  });
+
+  initGraph();
+  computeCentralities();
+  loop();
+})();
+</script>
 </body>
 </html>
