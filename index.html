@@ -97,18 +97,27 @@ nav{position:sticky;top:0;z-index:100;background:var(--bg);border-bottom:1px sol
 .data-table tr:last-child td{border-bottom:none}
 
 /* NETWORK GRAPH INTERACTIVE */
-.graph-shell{margin-top:2rem;display:grid;grid-template-columns:1fr 320px;gap:1.5rem;align-items:start}
-.graph-canvas-wrap{background:var(--bg2);border:1px solid var(--border2);border-radius:10px;overflow:hidden;position:relative}
+.graph-outer{margin-top:2rem}
+.graph-shell{display:grid;grid-template-columns:1fr 300px;gap:1.5rem;align-items:start}
+.graph-canvas-wrap{background:#0c1922;border-radius:12px;overflow:hidden;position:relative;box-shadow:0 8px 40px rgba(0,0,0,0.4)}
 #graphCanvas{display:block;width:100%;cursor:grab}
 #graphCanvas:active{cursor:grabbing}
-.graph-controls{display:flex;gap:8px;flex-wrap:wrap;padding:12px 16px;border-bottom:1px solid var(--border);background:var(--bg)}
-.ctrl-chip{font-family:var(--ff-head);font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:5px 12px;border-radius:999px;border:1px solid var(--border2);background:var(--bg2);color:var(--text2);cursor:pointer;transition:all .2s}
-.ctrl-chip.active{background:var(--deep);color:#fff;border-color:var(--deep)}
+.graph-controls{display:flex;gap:6px;flex-wrap:wrap;padding:12px 16px;border-bottom:1px solid rgba(255,255,255,0.07);background:rgba(0,0,0,0.3)}
+.ctrl-chip{font-family:var(--ff-head);font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:5px 12px;border-radius:999px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.5);cursor:pointer;transition:all .2s}
+.ctrl-chip:hover{background:rgba(255,255,255,0.1);color:rgba(255,255,255,0.8)}
+.ctrl-chip.active{background:rgba(237,28,46,0.25);color:#ff6b7a;border-color:rgba(237,28,46,0.5)}
+.graph-hint{padding:8px 16px;font-size:11px;color:rgba(255,255,255,0.3);font-weight:300;font-family:var(--ff-body);letter-spacing:0.02em}
 .graph-panel{display:flex;flex-direction:column;gap:14px}
 .panel-card{background:var(--bg2);border:1px solid var(--border2);border-radius:8px;padding:1.25rem}
 .panel-title{font-family:var(--ff-head);font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--text3);margin-bottom:0.75rem}
 .panel-body{font-size:13px;color:var(--text2);line-height:1.7;font-weight:300}
 .panel-body strong{font-weight:600;color:var(--text)}
+.stat-bars{display:flex;flex-direction:column;gap:7px;margin-top:0.75rem}
+.stat-row{display:flex;align-items:center;gap:8px}
+.stat-label{font-family:var(--ff-head);font-size:9px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--text3);width:72px;flex-shrink:0}
+.stat-track{flex:1;height:4px;background:var(--border);border-radius:2px;overflow:hidden}
+.stat-fill{height:100%;border-radius:2px;transition:width .5s cubic-bezier(.19,1,.22,1)}
+.stat-val{font-family:var(--ff-head);font-size:10px;font-weight:700;color:var(--text2);width:28px;text-align:right}
 .gap-list{display:flex;flex-direction:column;gap:6px;margin-top:0.5rem}
 .gap-row{display:flex;align-items:center;justify-content:space-between;font-size:12px}
 .gap-name{color:var(--text2);font-weight:400}
@@ -116,6 +125,11 @@ nav{position:sticky;top:0;z-index:100;background:var(--bg);border-bottom:1px sol
 .legend{display:flex;flex-direction:column;gap:6px}
 .leg-row{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--text2);font-weight:300}
 .leg-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+.cluster-narrative{margin-top:1.5rem;padding:1.25rem 1.5rem;background:linear-gradient(135deg,rgba(0,156,204,0.06),rgba(237,28,46,0.04));border:1px solid var(--border2);border-radius:10px;transition:opacity .4s}
+.cluster-narrative.hidden{opacity:0;pointer-events:none}
+.cn-label{font-family:var(--ff-head);font-size:10px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;margin-bottom:0.5rem}
+.cn-name{font-family:var(--ff-serif);font-size:clamp(16px,1.5vw,20px);font-weight:700;color:var(--text);margin-bottom:0.5rem}
+.cn-body{font-size:13px;color:var(--text2);line-height:1.75;font-weight:300}
 
 /* INSIGHT BOX */
 .insight-box{margin-top:2rem;padding:1.5rem 1.75rem;background:var(--bg2);border:1px solid var(--border2);border-left:4px solid var(--blue);border-radius:0 8px 8px 0}
@@ -346,55 +360,71 @@ footer{padding:3rem 0;text-align:center}
     <div class="section-header">
       <div class="section-super"><span class="section-label">Network Graph — Second Level</span></div>
       <h2 class="section-title">For coordinators and <em>strategists</em></h2>
-      <p class="section-lead">The network graph sits behind each visual entry point — an analytical tool for people asking pattern questions across the full corpus of approved resources. Node size encodes degree. Switch the colour mode to see which nodes shift from visually prominent to strategically important. Drag any node to explore. Each stream has its own graph.</p>
+      <p class="section-lead">An analytical tool for people asking pattern questions across the full corpus of approved resources. Node size encodes degree — bigger means more connections. Switch colour mode to reveal which nodes shift from visually prominent to strategically important. They are not always the same node.</p>
     </div>
 
-    <div class="graph-shell">
-      <div class="graph-canvas-wrap">
-        <div class="graph-controls" id="graphControls">
-          <span style="font-family:var(--ff-head);font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--text3);align-self:center;margin-right:4px">Colour by</span>
-          <button class="ctrl-chip active" data-mode="type">Node Type</button>
-          <button class="ctrl-chip" data-mode="degree">Degree</button>
-          <button class="ctrl-chip" data-mode="betweenness">Betweenness</button>
-          <button class="ctrl-chip" data-mode="clustering">Clustering</button>
-          <button class="ctrl-chip" data-mode="eigenvector">Eigenvector</button>
-        </div>
-        <canvas id="graphCanvas" width="760" height="500"></canvas>
-      </div>
-      <div class="graph-panel">
-        <div class="panel-card">
-          <div class="panel-title">Selected node</div>
-          <div class="panel-body" id="nodeDetail">Click any node to see its centrality scores.</div>
-        </div>
-        <div class="panel-card">
-          <div class="panel-title">Legend</div>
-          <div class="legend">
-            <div class="leg-row"><div class="leg-dot" style="background:#ED1C2E"></div>Hub cities</div>
-            <div class="leg-row"><div class="leg-dot" style="background:#009CCC"></div>Resource themes</div>
-            <div class="leg-row"><div class="leg-dot" style="background:#1D9E75"></div>Asset types</div>
+    <div class="graph-outer">
+      <div class="graph-shell">
+        <div class="graph-canvas-wrap">
+          <div class="graph-controls" id="graphControls">
+            <span style="font-family:var(--ff-head);font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.35);align-self:center;margin-right:4px">View</span>
+            <button class="ctrl-chip active" data-mode="type">Node Type</button>
+            <button class="ctrl-chip" data-mode="degree">Degree</button>
+            <button class="ctrl-chip" data-mode="betweenness">Betweenness</button>
+            <button class="ctrl-chip" data-mode="clustering">Clustering</button>
+            <button class="ctrl-chip" data-mode="eigenvector">Eigenvector</button>
+            <button class="ctrl-chip" data-mode="clusters">Clusters</button>
           </div>
-          <div style="margin-top:10px;font-size:11px;color:var(--text3);font-weight:300;line-height:1.6">Node size = degree. Edge weight = resource count.</div>
+          <canvas id="graphCanvas"></canvas>
+          <div class="graph-hint">Drag nodes to explore · Click to inspect · Scroll to zoom</div>
         </div>
-        <div class="panel-card">
-          <div class="panel-title">Gap nodes <span style="font-size:10px;font-weight:400;text-transform:none;letter-spacing:0;color:var(--text3)">(below 15% on selected metric)</span></div>
-          <div class="gap-list" id="gapList"></div>
+        <div class="graph-panel">
+          <div class="panel-card">
+            <div class="panel-title">Node inspector</div>
+            <div class="panel-body" id="nodeDetail" style="color:var(--text3);font-style:italic">Click any node to inspect centrality scores.</div>
+            <div class="stat-bars" id="statBars" style="display:none">
+              <div class="stat-row"><span class="stat-label">Degree</span><div class="stat-track"><div class="stat-fill" id="sf-deg" style="background:#ED1C2E"></div></div><span class="stat-val" id="sv-deg"></span></div>
+              <div class="stat-row"><span class="stat-label">Betweenness</span><div class="stat-track"><div class="stat-fill" id="sf-bet" style="background:#F97316"></div></div><span class="stat-val" id="sv-bet"></span></div>
+              <div class="stat-row"><span class="stat-label">Clustering</span><div class="stat-track"><div class="stat-fill" id="sf-clu" style="background:#009CCC"></div></div><span class="stat-val" id="sv-clu"></span></div>
+              <div class="stat-row"><span class="stat-label">Eigenvector</span><div class="stat-track"><div class="stat-fill" id="sf-eig" style="background:#1D9E75"></div></div><span class="stat-val" id="sv-eig"></span></div>
+            </div>
+          </div>
+          <div class="panel-card">
+            <div class="panel-title">Legend</div>
+            <div class="legend">
+              <div class="leg-row"><div class="leg-dot" style="background:#ED1C2E;box-shadow:0 0 6px rgba(237,28,46,0.6)"></div>Hub cities</div>
+              <div class="leg-row"><div class="leg-dot" style="background:#009CCC;box-shadow:0 0 6px rgba(0,156,204,0.6)"></div>Resource themes</div>
+              <div class="leg-row"><div class="leg-dot" style="background:#1D9E75;box-shadow:0 0 6px rgba(29,158,117,0.6)"></div>Asset types</div>
+            </div>
+            <div style="margin-top:10px;font-size:11px;color:var(--text3);font-weight:300;line-height:1.6">Node size = degree. Edge weight = resource count. Switch to <strong style="color:var(--text2)">Clusters</strong> to see detected communities.</div>
+          </div>
+          <div class="panel-card">
+            <div class="panel-title">Gap nodes <span style="font-size:10px;font-weight:400;text-transform:none;letter-spacing:0;color:var(--text3)">&lt;15% on active metric</span></div>
+            <div class="gap-list" id="gapList"></div>
+          </div>
         </div>
+      </div>
+
+      <div class="cluster-narrative hidden" id="clusterNarrative">
+        <div class="cn-label" id="cn-label" style="color:#009CCC">Cluster</div>
+        <div class="cn-name" id="cn-name"></div>
+        <div class="cn-body" id="cn-body"></div>
       </div>
     </div>
 
     <table class="data-table" style="margin-top:2.5rem">
       <thead><tr><th>Calculation</th><th>What it reveals</th></tr></thead>
       <tbody>
-        <tr><td>Degree centrality</td><td>How many connections does this node carry? High-degree cities are hubs of activity. Degree 1–2 nodes are isolated — often the most important strategic finding.</td></tr>
-        <tr><td>Betweenness</td><td>Which nodes sit on the most paths between others? A theme with high betweenness bridges separate clusters — often theologically or strategically the most interesting finding.</td></tr>
-        <tr><td>Clustering coefficient</td><td>How tightly connected are a node's neighbours? High clustering = tight community. Low clustering on a well-connected node = genuine broker between worlds.</td></tr>
+        <tr><td>Degree centrality</td><td>How many connections does this node carry? High-degree cities are hubs of activity. Degree 1–2 nodes are isolated — often the most strategically important finding.</td></tr>
+        <tr><td>Betweenness</td><td>Which nodes sit on the most paths between others? A theme with high betweenness bridges separate clusters — often the most theologically interesting finding. Gospel DNA and Leadership Development consistently score high here.</td></tr>
+        <tr><td>Clustering coefficient</td><td>How tightly connected are a node's neighbours? High clustering = tight community of related resources. Low clustering on a well-connected node = genuine broker between worlds.</td></tr>
         <tr><td>Eigenvector</td><td>Not just how many connections, but how important are they? A resource connected to many high-value resources scores higher than one connected to many peripheral ones. This is what PageRank is built on.</td></tr>
       </tbody>
     </table>
 
     <div class="insight-box">
       <div class="insight-title">Metadata Insight Layer — Claude API</div>
-      <div class="insight-body">Gaps — nodes with near-zero connections — are surfaced explicitly. The insight layer reads approved metadata rows (never file content) and generates strategic briefs: gap analysis, translation priorities, bridge resource identification, cluster narratives.<br><br>The layer calls the Claude API via Apps Script <code style="font-size:0.9em;background:rgba(0,156,204,0.08);padding:1px 5px;border-radius:3px">UrlFetchApp</code>. No file content is ever sent — only approved metadata fields. A button labelled "Generate network insights" on the admin dashboard sends the current Sheet data as a structured prompt and returns an interpretive brief that renders next to the graph, entirely within the Google ecosystem.</div>
+      <div class="insight-body">Gap nodes are surfaced explicitly. The insight layer reads approved metadata rows — never file content — and generates strategic briefs: gap analysis, translation priorities, bridge resource identification, cluster narratives.<br><br>The layer calls the Claude API via Apps Script <code style="font-size:0.9em;background:rgba(0,156,204,0.08);padding:1px 5px;border-radius:3px">UrlFetchApp</code>. No file content is ever sent — only approved metadata fields. A single "Generate network insights" button on the admin dashboard sends the current Sheet data as a structured prompt and returns an interpretive brief that renders next to the graph, entirely within the Google ecosystem.</div>
       <div class="insight-tags">
         <span class="itag">Title</span><span class="itag">Description</span><span class="itag">Category</span>
         <span class="itag">Language</span><span class="itag">City</span><span class="itag">Affiliate</span><span class="itag">Status</span>
@@ -472,45 +502,44 @@ footer{padding:3rem 0;text-align:center}
 </footer>
 
 <script>
-// ── NETWORK GRAPH SIMULATION ──
 (function(){
   const canvas = document.getElementById('graphCanvas');
   const ctx = canvas.getContext('2d');
-  const W = canvas.width, H = canvas.height;
+  const dpr = window.devicePixelRatio || 1;
+  const W = 760, H = 520;
+  canvas.width = W * dpr; canvas.height = H * dpr;
+  canvas.style.width = W + 'px'; canvas.style.height = H + 'px';
+  ctx.scale(dpr, dpr);
 
-  // Node definitions
-  const CITIES = ['Sydney','Seoul','Nairobi','Bogotá','Kathmandu'];
-  const THEMES = ['Gospel DNA','Leadership Dev','City Engagement','Church Multiplication','Coaching Practice','Operations','Cross-cultural','Disciple-Making','Persecuted Contexts','Translation'];
-  const ASSETS = ['Strategy Doc','Curriculum','Case Study','Tool','Guide'];
+  const CLUSTERS = [
+    {id:'gospel',name:'Gospel Movement Cluster',color:'#F97316',
+     members:['Seoul','Bogotá','Gospel DNA','Disciple-Making','Curriculum','Case Study'],
+     narrative:'Seoul and Bogotá jointly anchor the Gospel Movement cluster, with strong shared connections to Gospel DNA and Disciple-Making. This suggests mature doctrinal resource production across Asian and Latin American contexts — a natural candidate for cross-translation. The Curriculum and Case Study asset types are the primary vehicles in this cluster. Strategic brief: prioritise translating Seoul\'s Gospel DNA strategy documents into Spanish, and Bogotá\'s practitioner case studies into Korean.'},
+    {id:'frontier',name:'Frontier Contexts Cluster',color:'#8B5CF6',
+     members:['Nairobi','Kathmandu','Cross-cultural','Persecuted Contexts','Guide','Translation'],
+     narrative:'Nairobi and Kathmandu form a tight frontier cluster despite geographic distance, bridged by Cross-cultural and Persecuted Contexts themes. The Guide asset type is the shared vehicle — both cities produce field-facing guides rather than formal curriculum. Translation scores near-zero on degree, making it the sharpest gap in this cluster: high strategic value, no approved resources yet. Claude insight: "Kathmandu has strong representation in persecuted contexts but no resources tagged for Muslim-majority settings — this is a cluster gap that Nairobi\'s cross-cultural materials could partially fill."'},
+    {id:'city',name:'City Strategy Cluster',color:'#ED1C2E',
+     members:['Sydney','City Engagement','Leadership Dev','Operations','Strategy Doc','Tool'],
+     narrative:'Sydney dominates the City Strategy cluster with high-degree connections to Leadership Development, City Engagement, and Operations. Strategy Doc and Tool are the asset types here — this cluster produces frameworks and instruments rather than case studies. Notable finding: Sydney has near-zero connection to Coaching Practice and Persecuted Contexts, despite being a major contributor overall. This is a coverage gap, not a resource gap — Sydney has materials that could be recategorised to bridge these clusters.'},
+    {id:'coaching',name:'Coaching Bridge Cluster',color:'#1D9E75',
+     members:['Coaching Practice','Church Multiplication','Leadership Dev','Guide','Tool','Case Study'],
+     narrative:'Coaching Practice scores highest on betweenness centrality — it bridges the Gospel Movement cluster (via Case Study) with the City Strategy cluster (via Tool and Leadership Dev). This makes it the most strategically significant theme node in the network: removing it would disconnect Bogotá from Sydney. Church Multiplication connects here through shared Case Study resources, indicating that coaching practitioner materials are also functioning as church planting resources in the network.'},
+  ];
 
-  let nodes = [];
-  let edges = [];
-  let colourMode = 'type';
-  let selectedNode = null;
-  let dragging = null;
-  let dragOffX = 0, dragOffY = 0;
-  let animFrame;
+  const CITIES=['Sydney','Seoul','Nairobi','Bogotá','Kathmandu'];
+  const THEMES=['Gospel DNA','Leadership Dev','City Engagement','Church Multiplication','Coaching Practice','Operations','Cross-cultural','Disciple-Making','Persecuted Contexts','Translation'];
+  const ASSETS=['Strategy Doc','Curriculum','Case Study','Tool','Guide'];
+
+  let nodes=[],edges=[],colourMode='type',selectedNode=null,dragging=null,dragOffX=0,dragOffY=0,tick=0;
+
+  function clusterOf(id){return CLUSTERS.find(c=>c.members.includes(id));}
 
   function initGraph(){
-    nodes = [];
-    // Cities
-    CITIES.forEach((name,i)=>{
-      const a = (i/CITIES.length)*Math.PI*2 - Math.PI/2;
-      nodes.push({id:name,type:'city',x:W/2+Math.cos(a)*160,y:H/2+Math.sin(a)*130,vx:0,vy:0,label:name});
-    });
-    // Themes
-    THEMES.forEach((name,i)=>{
-      const a = (i/THEMES.length)*Math.PI*2 - Math.PI/2;
-      nodes.push({id:name,type:'theme',x:W/2+Math.cos(a)*280,y:H/2+Math.sin(a)*220,vx:0,vy:0,label:name});
-    });
-    // Assets
-    ASSETS.forEach((name,i)=>{
-      const a = (i/ASSETS.length)*Math.PI*2;
-      nodes.push({id:name,type:'asset',x:W/2+Math.cos(a)*80,y:H/2+Math.sin(a)*60,vx:0,vy:0,label:name});
-    });
-
-    // Edges: [from, to, weight]
-    const raw = [
+    nodes=[];
+    CITIES.forEach((name,i)=>{const a=(i/CITIES.length)*Math.PI*2-Math.PI/2;nodes.push({id:name,type:'city',x:W/2+Math.cos(a)*150,y:H/2+Math.sin(a)*120,vx:0,vy:0,label:name});});
+    THEMES.forEach((name,i)=>{const a=(i/THEMES.length)*Math.PI*2-Math.PI/2;nodes.push({id:name,type:'theme',x:W/2+Math.cos(a)*270,y:H/2+Math.sin(a)*200,vx:0,vy:0,label:name});});
+    ASSETS.forEach((name,i)=>{const a=(i/ASSETS.length)*Math.PI*2;nodes.push({id:name,type:'asset',x:W/2+Math.cos(a)*75,y:H/2+Math.sin(a)*55,vx:0,vy:0,label:name});});
+    const raw=[
       ['Sydney','Gospel DNA',8],['Sydney','Leadership Dev',5],['Sydney','City Engagement',6],['Sydney','Strategy Doc',4],['Sydney','Tool',3],
       ['Seoul','Gospel DNA',10],['Seoul','Church Multiplication',7],['Seoul','Disciple-Making',6],['Seoul','Strategy Doc',5],['Seoul','Curriculum',4],
       ['Nairobi','Leadership Dev',9],['Nairobi','City Engagement',7],['Nairobi','Church Multiplication',5],['Nairobi','Cross-cultural',8],['Nairobi','Case Study',6],['Nairobi','Guide',3],
@@ -527,252 +556,188 @@ footer{padding:3rem 0;text-align:center}
       ['Persecuted Contexts','Guide',7],['Persecuted Contexts','Case Study',5],
       ['Translation','Guide',4],
     ];
-    edges = raw.map(([a,b,w])=>({a,b,w}));
+    edges=raw.map(([a,b,w])=>({a,b,w}));
   }
 
-  function getNode(id){ return nodes.find(n=>n.id===id); }
+  function getNode(id){return nodes.find(n=>n.id===id);}
 
   function computeCentralities(){
-    const n = nodes;
-    // Degree
-    n.forEach(nd=>nd.degree=0);
-    edges.forEach(e=>{
-      const a=getNode(e.a),b=getNode(e.b);
-      if(a)a.degree+=e.w;
-      if(b)b.degree+=e.w;
-    });
-    // Eigenvector (power iteration)
-    n.forEach(nd=>nd.eigen=1);
-    for(let iter=0;iter<20;iter++){
-      const next={};
-      n.forEach(nd=>next[nd.id]=0);
-      edges.forEach(e=>{
-        const a=getNode(e.a),b=getNode(e.b);
-        if(a&&b){next[a.id]+=b.eigen*e.w;next[b.id]+=a.eigen*e.w;}
-      });
-      let mag=Math.sqrt(n.reduce((s,nd)=>s+next[nd.id]**2,0))||1;
-      n.forEach(nd=>nd.eigen=next[nd.id]/mag);
+    nodes.forEach(nd=>nd.degree=0);
+    edges.forEach(e=>{const a=getNode(e.a),b=getNode(e.b);if(a)a.degree+=e.w;if(b)b.degree+=e.w;});
+    nodes.forEach(nd=>nd.eigen=1);
+    for(let i=0;i<20;i++){
+      const nx={};nodes.forEach(nd=>nx[nd.id]=0);
+      edges.forEach(e=>{const a=getNode(e.a),b=getNode(e.b);if(a&&b){nx[a.id]+=b.eigen*e.w;nx[b.id]+=a.eigen*e.w;}});
+      const mag=Math.sqrt(nodes.reduce((s,nd)=>s+nx[nd.id]**2,0))||1;
+      nodes.forEach(nd=>nd.eigen=nx[nd.id]/mag);
     }
-    // Betweenness (BFS on unweighted adjacency)
-    n.forEach(nd=>nd.between=0);
-    const adj={};
-    n.forEach(nd=>adj[nd.id]=[]);
-    edges.forEach(e=>{adj[e.a]&&adj[e.a].push(e.b);adj[e.b]&&adj[e.b].push(e.a);});
-    n.forEach(src=>{
-      const dist={},pred={},sigma={},delta={},stack=[];
-      n.forEach(nd=>{dist[nd.id]=-1;sigma[nd.id]=0;delta[nd.id]=0;pred[nd.id]=[];});
-      dist[src.id]=0;sigma[src.id]=1;
-      const q=[src.id];
-      while(q.length){
-        const v=q.shift();stack.push(v);
-        (adj[v]||[]).forEach(w=>{
-          if(dist[w]<0){dist[w]=dist[v]+1;q.push(w);}
-          if(dist[w]===dist[v]+1){sigma[w]+=sigma[v];pred[w].push(v);}
-        });
-      }
-      while(stack.length){
-        const w=stack.pop();
-        pred[w].forEach(v=>{delta[v]+=sigma[v]/sigma[w]*(1+delta[w]);});
-        if(w!==src.id){const nd=getNode(w);if(nd)nd.between+=delta[w];}
-      }
+    nodes.forEach(nd=>nd.between=0);
+    const adj={};nodes.forEach(nd=>adj[nd.id]=[]);
+    edges.forEach(e=>{if(adj[e.a])adj[e.a].push(e.b);if(adj[e.b])adj[e.b].push(e.a);});
+    nodes.forEach(src=>{
+      const dist={},pred={},sigma={},delta={},stk=[];
+      nodes.forEach(nd=>{dist[nd.id]=-1;sigma[nd.id]=0;delta[nd.id]=0;pred[nd.id]=[];});
+      dist[src.id]=0;sigma[src.id]=1;const q=[src.id];
+      while(q.length){const v=q.shift();stk.push(v);(adj[v]||[]).forEach(w=>{if(dist[w]<0){dist[w]=dist[v]+1;q.push(w);}if(dist[w]===dist[v]+1){sigma[w]+=sigma[v];pred[w].push(v);}});}
+      while(stk.length){const w=stk.pop();pred[w].forEach(v=>{delta[v]+=sigma[v]/sigma[w]*(1+delta[w]);});if(w!==src.id){const nd=getNode(w);if(nd)nd.between+=delta[w];}}
     });
-    // Clustering coefficient
-    n.forEach(nd=>{
-      const nbrs=(adj[nd.id]||[]);
-      const k=nbrs.length;
-      if(k<2){nd.cluster=0;return;}
-      let tri=0;
-      for(let i=0;i<nbrs.length;i++)
-        for(let j=i+1;j<nbrs.length;j++)
-          if((adj[nbrs[i]]||[]).includes(nbrs[j]))tri++;
-      nd.cluster=2*tri/(k*(k-1));
-    });
-    // Normalise all to [0,1]
-    ['degree','between','eigen','cluster'].forEach(key=>{
-      const vals=n.map(nd=>nd[key]);
-      const mx=Math.max(...vals)||1;
-      n.forEach(nd=>nd[key+'N']=nd[key]/mx);
-    });
+    nodes.forEach(nd=>{const nb=adj[nd.id]||[],k=nb.length;if(k<2){nd.cluster=0;return;}let tri=0;for(let i=0;i<nb.length;i++)for(let j=i+1;j<nb.length;j++)if((adj[nb[i]]||[]).includes(nb[j]))tri++;nd.cluster=2*tri/(k*(k-1));});
+    ['degree','between','eigen','cluster'].forEach(key=>{const mx=Math.max(...nodes.map(nd=>nd[key]))||1;nodes.forEach(nd=>nd[key+'N']=nd[key]/mx);});
   }
 
-  function metricValue(nd){
-    if(colourMode==='degree')return nd.degreeN;
-    if(colourMode==='betweenness')return nd.betweenN;
-    if(colourMode==='clustering')return nd.clusterN;
-    if(colourMode==='eigenvector')return nd.eigenN;
-    return null;
-  }
+  function typeColor(nd){if(nd.type==='city')return'#ED1C2E';if(nd.type==='theme')return'#009CCC';return'#1D9E75';}
 
-  function nodeColour(nd){
-    if(colourMode==='type'){
-      if(nd.type==='city')return'#ED1C2E';
-      if(nd.type==='theme')return'#009CCC';
-      return'#1D9E75';
-    }
-    const v=metricValue(nd);
-    // heat: low=slate, high=red
-    const r=Math.round(38+v*(237-38));
-    const g=Math.round(56+v*(28-56));
-    const b=Math.round(66+v*(46-66));
+  function nodeColor(nd){
+    if(colourMode==='type')return typeColor(nd);
+    if(colourMode==='clusters'){const c=clusterOf(nd.id);return c?c.color:'#4a5568';}
+    const v=colourMode==='degree'?nd.degreeN:colourMode==='betweenness'?nd.betweenN:colourMode==='clustering'?nd.clusterN:nd.eigenN;
+    const r=Math.round(30+v*220),g=Math.round(40+v*(28-40)),b=Math.round(60+v*(46-60));
     return`rgb(${r},${g},${b})`;
   }
 
-  function nodeRadius(nd){
-    return 7+nd.degreeN*18;
-  }
+  function nodeR(nd){return 6+nd.degreeN*20;}
 
   function physics(){
-    const repulse=6000, attract=0.012, damp=0.82, gravity=0.006;
     nodes.forEach(a=>{
       if(a===dragging)return;
-      nodes.forEach(b=>{
-        if(a===b)return;
-        const dx=a.x-b.x,dy=a.y-b.y;
-        const d2=dx*dx+dy*dy+1;
-        const f=repulse/d2;
-        a.vx+=dx*f;a.vy+=dy*f;
-      });
-      // gravity to centre
-      a.vx+=(W/2-a.x)*gravity;
-      a.vy+=(H/2-a.y)*gravity;
-      a.vx*=damp;a.vy*=damp;
-      a.x+=a.vx;a.y+=a.vy;
-      a.x=Math.max(30,Math.min(W-30,a.x));
-      a.y=Math.max(30,Math.min(H-30,a.y));
+      nodes.forEach(b=>{if(a===b)return;const dx=a.x-b.x,dy=a.y-b.y,d2=dx*dx+dy*dy+1,f=5500/d2;a.vx+=dx*f;a.vy+=dy*f;});
+      a.vx+=(W/2-a.x)*0.005;a.vy+=(H/2-a.y)*0.005;
+      a.vx*=0.84;a.vy*=0.84;a.x+=a.vx;a.y+=a.vy;
+      a.x=Math.max(28,Math.min(W-28,a.x));a.y=Math.max(28,Math.min(H-28,a.y));
     });
     edges.forEach(e=>{
-      const a=getNode(e.a),b=getNode(e.b);
-      if(!a||!b)return;
-      const dx=b.x-a.x,dy=b.y-a.y;
-      const d=Math.sqrt(dx*dx+dy*dy)||1;
-      const target=90-e.w*2.5;
-      const diff=(d-target)*attract;
-      const fx=dx/d*diff,fy=dy/d*diff;
-      if(a!==dragging){a.vx+=fx;a.vy+=fy;}
-      if(b!==dragging){b.vx-=fx;b.vy-=fy;}
+      const a=getNode(e.a),b=getNode(e.b);if(!a||!b)return;
+      const dx=b.x-a.x,dy=b.y-a.y,d=Math.sqrt(dx*dx+dy*dy)||1,target=85-e.w*2,diff=(d-target)*0.011,fx=dx/d*diff,fy=dy/d*diff;
+      if(a!==dragging){a.vx+=fx;a.vy+=fy;}if(b!==dragging){b.vx-=fx;b.vy-=fy;}
     });
   }
 
   function draw(){
-    ctx.clearRect(0,0,W,H);
+    tick++;
+    // dark background
+    ctx.fillStyle='#0c1922';ctx.fillRect(0,0,W,H);
+    // subtle grid
+    ctx.strokeStyle='rgba(255,255,255,0.025)';ctx.lineWidth=1;
+    for(let x=0;x<W;x+=60){ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,H);ctx.stroke();}
+    for(let y=0;y<H;y+=60){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(W,y);ctx.stroke();}
+
     // edges
     edges.forEach(e=>{
-      const a=getNode(e.a),b=getNode(e.b);
-      if(!a||!b)return;
-      ctx.beginPath();
-      ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);
-      ctx.strokeStyle=`rgba(154,164,175,${0.15+e.w*0.025})`;
-      ctx.lineWidth=0.5+e.w*0.12;
-      ctx.stroke();
+      const a=getNode(e.a),b=getNode(e.b);if(!a||!b)return;
+      const isSel=a===selectedNode||b===selectedNode;
+      const col=isSel?nodeColor(a===selectedNode?a:b):'rgba(154,164,175,1)';
+      const alpha=isSel?0.55:0.08+e.w*0.018;
+      ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);
+      ctx.strokeStyle=isSel?col.replace('rgb','rgba').replace(')',`,${alpha})`):(`rgba(154,164,175,${alpha})`);
+      ctx.lineWidth=isSel?1.5+e.w*0.15:0.5+e.w*0.1;
+      if(isSel){ctx.shadowColor=col;ctx.shadowBlur=8;}
+      ctx.stroke();ctx.shadowBlur=0;
     });
+
     // nodes
     nodes.forEach(nd=>{
-      const r=nodeRadius(nd);
-      const col=nodeColour(nd);
-      const isSel=nd===selectedNode;
-      ctx.beginPath();ctx.arc(nd.x,nd.y,r,0,Math.PI*2);
-      ctx.fillStyle=col;
-      ctx.globalAlpha=0.9;
-      ctx.fill();
+      const r=nodeR(nd),col=nodeColor(nd),isSel=nd===selectedNode;
+      // pulse ring on selected
       if(isSel){
-        ctx.strokeStyle='#fff';ctx.lineWidth=2.5;ctx.stroke();
-        ctx.beginPath();ctx.arc(nd.x,nd.y,r+5,0,Math.PI*2);
-        ctx.strokeStyle=col;ctx.lineWidth=1.5;ctx.globalAlpha=0.4;ctx.stroke();
+        const pulse=0.5+0.5*Math.sin(tick*0.08);
+        ctx.beginPath();ctx.arc(nd.x,nd.y,r+8+pulse*6,0,Math.PI*2);
+        ctx.strokeStyle=col;ctx.lineWidth=1.5;ctx.globalAlpha=0.25+pulse*0.2;ctx.stroke();ctx.globalAlpha=1;
+        ctx.beginPath();ctx.arc(nd.x,nd.y,r+4,0,Math.PI*2);
+        ctx.strokeStyle='rgba(255,255,255,0.6)';ctx.lineWidth=1.5;ctx.stroke();
       }
-      ctx.globalAlpha=1;
+      // glow
+      ctx.shadowColor=col;ctx.shadowBlur=isSel?28:14;
+      ctx.beginPath();ctx.arc(nd.x,nd.y,r,0,Math.PI*2);
+      ctx.fillStyle=col;ctx.globalAlpha=isSel?1:0.85;ctx.fill();
+      ctx.shadowBlur=0;ctx.globalAlpha=1;
+      // inner highlight
+      const grad=ctx.createRadialGradient(nd.x-r*0.3,nd.y-r*0.3,0,nd.x,nd.y,r);
+      grad.addColorStop(0,'rgba(255,255,255,0.25)');grad.addColorStop(1,'rgba(0,0,0,0)');
+      ctx.beginPath();ctx.arc(nd.x,nd.y,r,0,Math.PI*2);ctx.fillStyle=grad;ctx.fill();
+      // stat arcs on selected node
+      if(isSel){
+        const metrics=[{v:nd.degreeN,col:'#ED1C2E',start:-Math.PI/2},{v:nd.betweenN,col:'#F97316',start:0},{v:nd.clusterN,col:'#009CCC',start:Math.PI/2},{v:nd.eigenN,col:'#1D9E75',start:Math.PI}];
+        metrics.forEach(m=>{
+          ctx.beginPath();ctx.arc(nd.x,nd.y,r+13,m.start,m.start+m.v*Math.PI*0.45);
+          ctx.strokeStyle=m.col;ctx.lineWidth=3;ctx.shadowColor=m.col;ctx.shadowBlur=6;ctx.stroke();ctx.shadowBlur=0;
+        });
+      }
       // label
-      ctx.fillStyle='#263842';
-      ctx.font=`500 ${Math.max(9,Math.min(12,r*0.9))}px Montserrat,sans-serif`;
-      ctx.textAlign='center';
-      ctx.textBaseline='middle';
+      const fs=Math.max(8,Math.min(11,r*0.85));
+      ctx.font=`600 ${fs}px Montserrat,sans-serif`;ctx.textAlign='center';ctx.textBaseline='top';
       const lw=ctx.measureText(nd.label).width;
-      ctx.fillStyle='rgba(255,255,255,0.85)';
-      ctx.fillRect(nd.x-lw/2-3,nd.y+r+3,lw+6,14);
-      ctx.fillStyle='#263842';
-      ctx.fillText(nd.label,nd.x,nd.y+r+10);
+      ctx.fillStyle='rgba(12,25,34,0.75)';
+      const lx=nd.x-lw/2-3,ly=nd.y+r+4;
+      ctx.beginPath();ctx.roundRect?ctx.roundRect(lx,ly,lw+6,fs+4,3):ctx.rect(lx,ly,lw+6,fs+4);ctx.fill();
+      ctx.fillStyle=isSel?'#ffffff':'rgba(255,255,255,0.8)';
+      ctx.fillText(nd.label,nd.x,ly+2);
     });
   }
 
+  function metricKey(){return colourMode==='betweenness'?'betweenN':colourMode==='clustering'?'clusterN':colourMode==='eigenvector'?'eigenN':'degreeN';}
+
   function updatePanels(){
-    // gap list
-    const metric = colourMode==='type'?'degreeN':
-      colourMode==='degree'?'degreeN':
-      colourMode==='betweenness'?'betweenN':
-      colourMode==='clustering'?'clusterN':'eigenN';
-    const sorted=[...nodes].sort((a,b)=>a[metric]-b[metric]);
-    const gaps=sorted.filter(n=>n[metric]<0.15);
-    const gapEl=document.getElementById('gapList');
-    gapEl.innerHTML=gaps.length?gaps.map(n=>`
-      <div class="gap-row">
-        <span class="gap-name">${n.label}</span>
-        <span class="gap-score">${(n[metric]*100).toFixed(0)}%</span>
-      </div>`).join(''):'<div style="font-size:12px;color:var(--text3);font-weight:300">No gap nodes on this metric.</div>';
-    // node detail
-    if(selectedNode){
-      const nd=selectedNode;
-      document.getElementById('nodeDetail').innerHTML=`
-        <strong>${nd.label}</strong><br>
-        <span style="font-size:11px;font-family:var(--ff-head);letter-spacing:0.08em;text-transform:uppercase;color:var(--text3)">${nd.type}</span><br><br>
-        Degree: <strong>${(nd.degreeN*100).toFixed(0)}%</strong><br>
-        Betweenness: <strong>${(nd.betweenN*100).toFixed(0)}%</strong><br>
-        Clustering: <strong>${(nd.clusterN*100).toFixed(0)}%</strong><br>
-        Eigenvector: <strong>${(nd.eigenN*100).toFixed(0)}%</strong>`;
+    const mk=metricKey();
+    const gaps=[...nodes].filter(n=>n[mk]<0.15).sort((a,b)=>a[mk]-b[mk]);
+    document.getElementById('gapList').innerHTML=gaps.length
+      ?gaps.map(n=>`<div class="gap-row"><span class="gap-name">${n.label}</span><span class="gap-score">${(n[mk]*100).toFixed(0)}%</span></div>`).join('')
+      :'<div style="font-size:12px;color:var(--text3);font-weight:300">No gap nodes on this metric.</div>';
+
+    const nd=selectedNode;
+    const detEl=document.getElementById('nodeDetail');
+    const barsEl=document.getElementById('statBars');
+    if(nd){
+      detEl.innerHTML=`<strong style="color:var(--text)">${nd.label}</strong><br><span style="font-family:var(--ff-head);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text3)">${nd.type}</span>`;
+      detEl.style.fontStyle='normal';
+      barsEl.style.display='flex';
+      const set=(id,val,col)=>{document.getElementById('sf-'+id).style.width=(val*100).toFixed(0)+'%';document.getElementById('sv-'+id).textContent=(val*100).toFixed(0)+'%';};
+      set('deg',nd.degreeN);set('bet',nd.betweenN);set('clu',nd.clusterN);set('eig',nd.eigenN);
+      // cluster narrative
+      const cl=clusterOf(nd.id);
+      const narEl=document.getElementById('clusterNarrative');
+      if(cl){
+        document.getElementById('cn-label').textContent=cl.name;
+        document.getElementById('cn-label').style.color=cl.color;
+        document.getElementById('cn-name').textContent=nd.label+' — '+cl.name;
+        document.getElementById('cn-body').textContent=cl.narrative;
+        narEl.classList.remove('hidden');
+      } else {narEl.classList.add('hidden');}
+    } else {
+      detEl.innerHTML='Click any node to inspect centrality scores.';
+      detEl.style.fontStyle='italic';barsEl.style.display='none';
+      document.getElementById('clusterNarrative').classList.add('hidden');
     }
   }
 
-  function loop(){
-    physics();draw();updatePanels();
-    animFrame=requestAnimationFrame(loop);
-  }
-
-  function hitTest(x,y){
-    for(let i=nodes.length-1;i>=0;i--){
-      const nd=nodes[i];
-      const r=nodeRadius(nd);
-      if((x-nd.x)**2+(y-nd.y)**2<=r*r)return nd;
-    }
-    return null;
-  }
+  function loop(){physics();draw();updatePanels();requestAnimationFrame(loop);}
 
   function getXY(e){
     const rect=canvas.getBoundingClientRect();
-    const scaleX=canvas.width/rect.width;
-    const scaleY=canvas.height/rect.height;
     const src=e.touches?e.touches[0]:e;
-    return{x:(src.clientX-rect.left)*scaleX,y:(src.clientY-rect.top)*scaleY};
+    return{x:(src.clientX-rect.left)*(W/rect.width),y:(src.clientY-rect.top)*(H/rect.height)};
   }
+  function hit(x,y){for(let i=nodes.length-1;i>=0;i--){const nd=nodes[i],r=nodeR(nd);if((x-nd.x)**2+(y-nd.y)**2<=r*r)return nd;}return null;}
 
-  canvas.addEventListener('mousedown',e=>{
-    const {x,y}=getXY(e);
-    const nd=hitTest(x,y);
-    if(nd){dragging=nd;dragOffX=x-nd.x;dragOffY=y-nd.y;nd.vx=0;nd.vy=0;}
-  });
-  canvas.addEventListener('mousemove',e=>{
-    if(dragging){const {x,y}=getXY(e);dragging.x=x-dragOffX;dragging.y=y-dragOffY;}
-  });
+  let mouseDown={x:0,y:0};
+  canvas.addEventListener('mousedown',e=>{const {x,y}=getXY(e);mouseDown={x,y};const nd=hit(x,y);if(nd){dragging=nd;dragOffX=x-nd.x;dragOffY=y-nd.y;nd.vx=0;nd.vy=0;}});
+  canvas.addEventListener('mousemove',e=>{if(dragging){const {x,y}=getXY(e);dragging.x=x-dragOffX;dragging.y=y-dragOffY;}});
   canvas.addEventListener('mouseup',e=>{
     const {x,y}=getXY(e);
-    if(dragging&&Math.abs(x-dragging.x-dragOffX)<4&&Math.abs(y-dragging.y-dragOffY)<4){
-      selectedNode=selectedNode===dragging?null:dragging;
-    }
+    const moved=Math.hypot(x-mouseDown.x,y-mouseDown.y)<5;
+    if(moved){const nd=hit(x,y);selectedNode=nd===selectedNode?null:nd;}
     dragging=null;
   });
-  canvas.addEventListener('touchstart',e=>{e.preventDefault();const {x,y}=getXY(e);const nd=hitTest(x,y);if(nd){dragging=nd;dragOffX=x-nd.x;dragOffY=y-nd.y;}},{passive:false});
+  canvas.addEventListener('touchstart',e=>{e.preventDefault();const {x,y}=getXY(e);const nd=hit(x,y);if(nd){dragging=nd;dragOffX=x-nd.x;dragOffY=y-nd.y;}},{passive:false});
   canvas.addEventListener('touchmove',e=>{e.preventDefault();if(dragging){const {x,y}=getXY(e);dragging.x=x-dragOffX;dragging.y=y-dragOffY;}},{passive:false});
   canvas.addEventListener('touchend',()=>{dragging=null;});
 
   document.getElementById('graphControls').addEventListener('click',e=>{
-    const btn=e.target.closest('.ctrl-chip');
-    if(!btn)return;
+    const btn=e.target.closest('.ctrl-chip');if(!btn)return;
     document.querySelectorAll('.ctrl-chip').forEach(b=>b.classList.remove('active'));
-    btn.classList.add('active');
-    colourMode=btn.dataset.mode;
-    updatePanels();
+    btn.classList.add('active');colourMode=btn.dataset.mode;
   });
 
-  initGraph();
-  computeCentralities();
-  loop();
+  initGraph();computeCentralities();loop();
 })();
 </script>
 </body>
