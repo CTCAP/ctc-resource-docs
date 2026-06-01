@@ -96,38 +96,40 @@ nav{position:sticky;top:0;z-index:100;background:var(--bg);border-bottom:1px sol
 .data-table td:first-child{font-family:var(--ff-head);font-size:12px;font-weight:600;color:var(--text);letter-spacing:0.04em;white-space:nowrap}
 .data-table tr:last-child td{border-bottom:none}
 
-/* NETWORK GRAPH INTERACTIVE */
+/* NETWORK GRAPH */
 .graph-outer{margin-top:2rem}
-.graph-shell{display:grid;grid-template-columns:1fr 300px;gap:1.5rem;align-items:start}
-.graph-canvas-wrap{background:#0c1922;border-radius:12px;overflow:hidden;position:relative;box-shadow:0 8px 40px rgba(0,0,0,0.4)}
+.graph-canvas-wrap{background:#fff;border:1px solid var(--border2);border-radius:10px;overflow:hidden}
 #graphCanvas{display:block;width:100%;cursor:grab}
 #graphCanvas:active{cursor:grabbing}
-.graph-controls{display:flex;gap:6px;flex-wrap:wrap;padding:12px 16px;border-bottom:1px solid rgba(255,255,255,0.07);background:rgba(0,0,0,0.3)}
-.ctrl-chip{font-family:var(--ff-head);font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:5px 12px;border-radius:999px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.5);cursor:pointer;transition:all .2s}
-.ctrl-chip:hover{background:rgba(255,255,255,0.1);color:rgba(255,255,255,0.8)}
-.ctrl-chip.active{background:rgba(237,28,46,0.25);color:#ff6b7a;border-color:rgba(237,28,46,0.5)}
-.graph-hint{padding:8px 16px;font-size:11px;color:rgba(255,255,255,0.3);font-weight:300;font-family:var(--ff-body);letter-spacing:0.02em}
-.graph-panel{display:flex;flex-direction:column;gap:14px}
-.panel-card{background:var(--bg2);border:1px solid var(--border2);border-radius:8px;padding:1.25rem}
-.panel-title{font-family:var(--ff-head);font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--text3);margin-bottom:0.75rem}
-.panel-body{font-size:13px;color:var(--text2);line-height:1.7;font-weight:300}
-.panel-body strong{font-weight:600;color:var(--text)}
-.stat-bars{display:flex;flex-direction:column;gap:7px;margin-top:0.75rem}
-.stat-row{display:flex;align-items:center;gap:8px}
-.stat-label{font-family:var(--ff-head);font-size:9px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--text3);width:72px;flex-shrink:0}
-.stat-track{flex:1;height:4px;background:var(--border);border-radius:2px;overflow:hidden}
-.stat-fill{height:100%;border-radius:2px;transition:width .5s cubic-bezier(.19,1,.22,1)}
-.stat-val{font-family:var(--ff-head);font-size:10px;font-weight:700;color:var(--text2);width:28px;text-align:right}
-.gap-list{display:flex;flex-direction:column;gap:6px;margin-top:0.5rem}
-.gap-row{display:flex;align-items:center;justify-content:space-between;font-size:12px}
-.gap-name{color:var(--text2);font-weight:400}
-.gap-score{font-family:var(--ff-head);font-size:10px;font-weight:700;padding:2px 7px;border-radius:4px;background:rgba(237,28,46,0.1);color:var(--red)}
-.legend{display:flex;flex-direction:column;gap:6px}
-.leg-row{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--text2);font-weight:300}
-.leg-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
-.cluster-narrative{margin-top:1.5rem;padding:1.25rem 1.5rem;background:linear-gradient(135deg,rgba(0,156,204,0.06),rgba(237,28,46,0.04));border:1px solid var(--border2);border-radius:10px;transition:opacity .4s}
-.cluster-narrative.hidden{opacity:0;pointer-events:none}
-.cn-label{font-family:var(--ff-head);font-size:10px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;margin-bottom:0.5rem}
+.graph-toolbar{display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding:10px 16px;border-bottom:1px solid var(--border);background:var(--bg2)}
+.graph-toolbar label{font-size:13px;color:var(--text2);font-weight:400;white-space:nowrap}
+.graph-toolbar select{font-family:var(--ff-body);font-size:13px;color:var(--text);background:var(--bg);border:1px solid var(--border2);border-radius:5px;padding:5px 10px;cursor:pointer}
+.graph-toolbar button{font-family:var(--ff-head);font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;padding:6px 14px;border-radius:5px;border:1px solid var(--border2);background:var(--bg);color:var(--text2);cursor:pointer;transition:all .2s;white-space:nowrap}
+.graph-toolbar button:hover{border-color:var(--red);color:var(--red)}
+.btn-claude{background:rgba(237,28,46,0.06)!important;border-color:rgba(237,28,46,0.3)!important;color:var(--red)!important}
+.btn-claude:hover{background:rgba(237,28,46,0.12)!important}
+.graph-stats{display:grid;grid-template-columns:repeat(4,1fr);border-bottom:1px solid var(--border)}
+.stat-cell{padding:12px 16px;border-right:1px solid var(--border)}
+.stat-cell:last-child{border-right:none}
+.stat-cell-label{font-family:var(--ff-head);font-size:9px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--text3);margin-bottom:3px}
+.stat-cell-val{font-family:var(--ff-head);font-size:22px;font-weight:700;color:var(--text);line-height:1}
+.stat-cell-sub{font-size:12px;color:var(--text2);font-weight:400;margin-top:2px}
+.graph-insight{padding:12px 16px;border-bottom:1px solid var(--border);border-left:3px solid var(--red);background:rgba(237,28,46,0.03);font-size:13px;color:var(--text2);line-height:1.65;font-weight:300;min-height:44px}
+.graph-insight strong{font-weight:600;color:var(--text)}
+.graph-table-wrap{overflow-x:auto}
+.graph-table{width:100%;border-collapse:collapse;font-size:12px}
+.graph-table th{font-family:var(--ff-head);font-size:9px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--text3);text-align:left;padding:8px 12px;border-bottom:1px solid var(--border2);background:var(--bg2);white-space:nowrap}
+.graph-table td{padding:7px 12px;border-bottom:1px solid var(--border);color:var(--text2);vertical-align:middle}
+.graph-table tr:last-child td{border-bottom:none}
+.graph-table tr:hover td{background:var(--bg2)}
+.type-badge{font-family:var(--ff-head);font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;letter-spacing:0.06em}
+.tb-city{background:rgba(237,28,46,0.1);color:var(--red)}
+.tb-theme{background:rgba(0,156,204,0.1);color:var(--blue)}
+.tb-asset{background:rgba(29,158,117,0.1);color:#1D9E75}
+.deg-bar{display:inline-block;height:4px;border-radius:2px;background:var(--red);vertical-align:middle;margin-right:6px}
+.cluster-narrative{margin-top:1.5rem;padding:1.25rem 1.5rem;background:var(--bg2);border:1px solid var(--border2);border-left:4px solid var(--blue);border-radius:0 10px 10px 0;transition:opacity .4s}
+.cluster-narrative.hidden{opacity:0;height:0;padding:0;overflow:hidden;border:none;margin:0}
+.cn-label{font-family:var(--ff-head);font-size:10px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;margin-bottom:0.4rem}
 .cn-name{font-family:var(--ff-serif);font-size:clamp(16px,1.5vw,20px);font-weight:700;color:var(--text);margin-bottom:0.5rem}
 .cn-body{font-size:13px;color:var(--text2);line-height:1.75;font-weight:300}
 
@@ -364,48 +366,44 @@ footer{padding:3rem 0;text-align:center}
     </div>
 
     <div class="graph-outer">
-      <div class="graph-shell">
-        <div class="graph-canvas-wrap">
-          <div class="graph-controls" id="graphControls">
-            <span style="font-family:var(--ff-head);font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.35);align-self:center;margin-right:4px">View</span>
-            <button class="ctrl-chip active" data-mode="type">Node Type</button>
-            <button class="ctrl-chip" data-mode="degree">Degree</button>
-            <button class="ctrl-chip" data-mode="betweenness">Betweenness</button>
-            <button class="ctrl-chip" data-mode="clustering">Clustering</button>
-            <button class="ctrl-chip" data-mode="eigenvector">Eigenvector</button>
-            <button class="ctrl-chip" data-mode="clusters">Clusters</button>
-          </div>
-          <canvas id="graphCanvas"></canvas>
-          <div class="graph-hint">Drag nodes to explore · Click to inspect · Scroll to zoom</div>
+      <div class="graph-canvas-wrap">
+        <div class="graph-toolbar">
+          <label>Colour nodes by</label>
+          <select id="colourSelect">
+            <option value="type">Node type</option>
+            <option value="degree">Degree</option>
+            <option value="betweenness">Betweenness</option>
+            <option value="clustering">Clustering</option>
+            <option value="eigenvector">Eigenvector</option>
+            <option value="clusters">Clusters</option>
+          </select>
+          <label>Show metric</label>
+          <select id="metricSelect">
+            <option value="degree">Degree</option>
+            <option value="betweenness">Betweenness</option>
+            <option value="clustering">Clustering</option>
+            <option value="eigenvector">Eigenvector</option>
+          </select>
+          <button onclick="reshuffleGraph()">Reshuffle ↺</button>
+          <button class="btn-claude" onclick="askClaude()">Ask Claude ↗</button>
         </div>
-        <div class="graph-panel">
-          <div class="panel-card">
-            <div class="panel-title">Node inspector</div>
-            <div class="panel-body" id="nodeDetail" style="color:var(--text3);font-style:italic">Click any node to inspect centrality scores.</div>
-            <div class="stat-bars" id="statBars" style="display:none">
-              <div class="stat-row"><span class="stat-label">Degree</span><div class="stat-track"><div class="stat-fill" id="sf-deg" style="background:#ED1C2E"></div></div><span class="stat-val" id="sv-deg"></span></div>
-              <div class="stat-row"><span class="stat-label">Betweenness</span><div class="stat-track"><div class="stat-fill" id="sf-bet" style="background:#F97316"></div></div><span class="stat-val" id="sv-bet"></span></div>
-              <div class="stat-row"><span class="stat-label">Clustering</span><div class="stat-track"><div class="stat-fill" id="sf-clu" style="background:#009CCC"></div></div><span class="stat-val" id="sv-clu"></span></div>
-              <div class="stat-row"><span class="stat-label">Eigenvector</span><div class="stat-track"><div class="stat-fill" id="sf-eig" style="background:#1D9E75"></div></div><span class="stat-val" id="sv-eig"></span></div>
-            </div>
-          </div>
-          <div class="panel-card">
-            <div class="panel-title">Legend</div>
-            <div class="legend">
-              <div class="leg-row"><div class="leg-dot" style="background:#ED1C2E;box-shadow:0 0 6px rgba(237,28,46,0.6)"></div>Hub cities</div>
-              <div class="leg-row"><div class="leg-dot" style="background:#009CCC;box-shadow:0 0 6px rgba(0,156,204,0.6)"></div>Resource themes</div>
-              <div class="leg-row"><div class="leg-dot" style="background:#1D9E75;box-shadow:0 0 6px rgba(29,158,117,0.6)"></div>Asset types</div>
-            </div>
-            <div style="margin-top:10px;font-size:11px;color:var(--text3);font-weight:300;line-height:1.6">Node size = degree. Edge weight = resource count. Switch to <strong style="color:var(--text2)">Clusters</strong> to see detected communities.</div>
-          </div>
-          <div class="panel-card">
-            <div class="panel-title">Gap nodes <span style="font-size:10px;font-weight:400;text-transform:none;letter-spacing:0;color:var(--text3)">&lt;15% on active metric</span></div>
-            <div class="gap-list" id="gapList"></div>
-          </div>
+        <canvas id="graphCanvas"></canvas>
+        <div class="graph-stats" id="graphStats">
+          <div class="stat-cell"><div class="stat-cell-label">Nodes</div><div class="stat-cell-val" id="stat-nodes">20</div></div>
+          <div class="stat-cell"><div class="stat-cell-label">Edges</div><div class="stat-cell-val" id="stat-edges">42</div></div>
+          <div class="stat-cell"><div class="stat-cell-label">Top Node</div><div class="stat-cell-val" style="font-size:14px;padding-top:4px" id="stat-top">—</div><div class="stat-cell-sub" id="stat-top-sub"></div></div>
+          <div class="stat-cell"><div class="stat-cell-label">Gap Nodes</div><div class="stat-cell-val" id="stat-gaps">—</div></div>
+        </div>
+        <div class="graph-insight" id="graphInsight">Select a metric and click a node — or press <strong>Ask Claude</strong> for a strategic brief on the current network.</div>
+        <div class="graph-table-wrap">
+          <table class="graph-table" id="graphTable">
+            <thead><tr><th>Node</th><th>Type</th><th>Degree</th><th>Betweenness</th><th>Clustering</th><th>Eigenvector</th></tr></thead>
+            <tbody id="graphTableBody"></tbody>
+          </table>
         </div>
       </div>
 
-      <div class="cluster-narrative hidden" id="clusterNarrative">
+      <div class="cluster-narrative hidden" id="clusterNarrative" style="margin-top:1.5rem">
         <div class="cn-label" id="cn-label" style="color:#009CCC">Cluster</div>
         <div class="cn-name" id="cn-name"></div>
         <div class="cn-body" id="cn-body"></div>
@@ -506,10 +504,12 @@ footer{padding:3rem 0;text-align:center}
   const canvas = document.getElementById('graphCanvas');
   const ctx = canvas.getContext('2d');
   const dpr = window.devicePixelRatio || 1;
-  const W = 760, H = 520;
+  const W = 900, H = 480;
   canvas.width = W * dpr; canvas.height = H * dpr;
-  canvas.style.width = W + 'px'; canvas.style.height = H + 'px';
+  canvas.style.width = '100%'; canvas.style.height = H + 'px';
   ctx.scale(dpr, dpr);
+
+  let colourMode='type', metricMode='degree';
 
   const CLUSTERS = [
     {id:'gospel',name:'Gospel Movement Cluster',color:'#F97316',
@@ -530,7 +530,7 @@ footer{padding:3rem 0;text-align:center}
   const THEMES=['Gospel DNA','Leadership Dev','City Engagement','Church Multiplication','Coaching Practice','Operations','Cross-cultural','Disciple-Making','Persecuted Contexts','Translation'];
   const ASSETS=['Strategy Doc','Curriculum','Case Study','Tool','Guide'];
 
-  let nodes=[],edges=[],colourMode='type',selectedNode=null,dragging=null,dragOffX=0,dragOffY=0,tick=0;
+  let nodes=[],edges=[],selectedNode=null,dragging=null,dragOffX=0,dragOffY=0,tick=0;
 
   function clusterOf(id){return CLUSTERS.find(c=>c.members.includes(id));}
 
@@ -590,130 +590,148 @@ footer{padding:3rem 0;text-align:center}
 
   function typeColor(nd){if(nd.type==='city')return'#ED1C2E';if(nd.type==='theme')return'#009CCC';return'#1D9E75';}
 
-  function nodeColor(nd){
-    if(colourMode==='type')return typeColor(nd);
-    if(colourMode==='clusters'){const c=clusterOf(nd.id);return c?c.color:'#4a5568';}
-    const v=colourMode==='degree'?nd.degreeN:colourMode==='betweenness'?nd.betweenN:colourMode==='clustering'?nd.clusterN:nd.eigenN;
-    const r=Math.round(30+v*220),g=Math.round(40+v*(28-40)),b=Math.round(60+v*(46-60));
+  function heatColor(v){
+    // low = cool blue-grey, high = red
+    const r=Math.round(180+v*57),g=Math.round(190-v*162),b=Math.round(210-v*164);
     return`rgb(${r},${g},${b})`;
   }
 
-  function nodeR(nd){return 6+nd.degreeN*20;}
+  function nodeColor(nd){
+    if(colourMode==='type')return typeColor(nd);
+    if(colourMode==='clusters'){const c=clusterOf(nd.id);return c?c.color:'#94a3b8';}
+    const v=colourMode==='degree'?nd.degreeN:colourMode==='betweenness'?nd.betweenN:colourMode==='clustering'?nd.clusterN:nd.eigenN;
+    return heatColor(v);
+  }
+
+  function metricVal(nd){
+    return metricMode==='degree'?nd.degreeN:metricMode==='betweenness'?nd.betweenN:metricMode==='clustering'?nd.clusterN:nd.eigenN;
+  }
+
+  function nodeR(nd){return 18+nd.degreeN*22;}
 
   function physics(){
-    const PAD=55;
+    const PAD=60;
     nodes.forEach(a=>{
       if(a===dragging)return;
-      nodes.forEach(b=>{if(a===b)return;const dx=a.x-b.x,dy=a.y-b.y,d2=dx*dx+dy*dy+0.01,f=9000/d2;a.vx+=dx*f;a.vy+=dy*f;});
+      nodes.forEach(b=>{if(a===b)return;const dx=a.x-b.x,dy=a.y-b.y,d2=dx*dx+dy*dy+0.01,f=10000/d2;a.vx+=dx*f;a.vy+=dy*f;});
       a.vx+=(W/2-a.x)*0.004;a.vy+=(H/2-a.y)*0.004;
       a.vx*=0.80;a.vy*=0.80;a.x+=a.vx;a.y+=a.vy;
       a.x=Math.max(PAD,Math.min(W-PAD,a.x));a.y=Math.max(PAD,Math.min(H-PAD,a.y));
     });
     edges.forEach(e=>{
       const a=getNode(e.a),b=getNode(e.b);if(!a||!b)return;
-      const dx=b.x-a.x,dy=b.y-a.y,d=Math.sqrt(dx*dx+dy*dy)||1,target=100-e.w*3,diff=(d-target)*0.009,fx=dx/d*diff,fy=dy/d*diff;
+      const dx=b.x-a.x,dy=b.y-a.y,d=Math.sqrt(dx*dx+dy*dy)||1,target=110-e.w*3.5,diff=(d-target)*0.008,fx=dx/d*diff,fy=dy/d*diff;
       if(a!==dragging){a.vx+=fx;a.vy+=fy;}if(b!==dragging){b.vx-=fx;b.vy-=fy;}
     });
   }
 
   function draw(){
     tick++;
-    // dark background
-    ctx.fillStyle='#0c1922';ctx.fillRect(0,0,W,H);
-    // subtle grid
-    ctx.strokeStyle='rgba(255,255,255,0.025)';ctx.lineWidth=1;
-    for(let x=0;x<W;x+=60){ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,H);ctx.stroke();}
-    for(let y=0;y<H;y+=60){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(W,y);ctx.stroke();}
+    ctx.fillStyle='#ffffff';ctx.fillRect(0,0,W,H);
 
     // edges
     edges.forEach(e=>{
       const a=getNode(e.a),b=getNode(e.b);if(!a||!b)return;
       const isSel=a===selectedNode||b===selectedNode;
-      const col=isSel?nodeColor(a===selectedNode?a:b):'rgba(154,164,175,1)';
-      const alpha=isSel?0.55:0.08+e.w*0.018;
       ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);
-      ctx.strokeStyle=isSel?col.replace('rgb','rgba').replace(')',`,${alpha})`):(`rgba(154,164,175,${alpha})`);
-      ctx.lineWidth=isSel?1.5+e.w*0.15:0.5+e.w*0.1;
-      if(isSel){ctx.shadowColor=col;ctx.shadowBlur=8;}
-      ctx.stroke();ctx.shadowBlur=0;
+      ctx.strokeStyle=isSel?`rgba(38,56,66,0.35)`:`rgba(154,164,175,${0.12+e.w*0.02})`;
+      ctx.lineWidth=isSel?1.5+e.w*0.12:0.8+e.w*0.08;
+      ctx.stroke();
     });
 
     // nodes
     nodes.forEach(nd=>{
       const r=nodeR(nd),col=nodeColor(nd),isSel=nd===selectedNode;
-      // pulse ring on selected
+      const mv=metricVal(nd);
+
+      // selection ring
       if(isSel){
-        const pulse=0.5+0.5*Math.sin(tick*0.08);
-        ctx.beginPath();ctx.arc(nd.x,nd.y,r+8+pulse*6,0,Math.PI*2);
-        ctx.strokeStyle=col;ctx.lineWidth=1.5;ctx.globalAlpha=0.25+pulse*0.2;ctx.stroke();ctx.globalAlpha=1;
-        ctx.beginPath();ctx.arc(nd.x,nd.y,r+4,0,Math.PI*2);
-        ctx.strokeStyle='rgba(255,255,255,0.6)';ctx.lineWidth=1.5;ctx.stroke();
+        const pulse=0.5+0.5*Math.sin(tick*0.1);
+        ctx.beginPath();ctx.arc(nd.x,nd.y,r+6+pulse*4,0,Math.PI*2);
+        ctx.strokeStyle=col;ctx.lineWidth=2;ctx.globalAlpha=0.35+pulse*0.2;ctx.stroke();ctx.globalAlpha=1;
       }
-      // glow
-      ctx.shadowColor=col;ctx.shadowBlur=isSel?28:14;
+
+      // shadow
+      ctx.shadowColor='rgba(0,0,0,0.15)';ctx.shadowBlur=isSel?16:8;ctx.shadowOffsetY=2;
       ctx.beginPath();ctx.arc(nd.x,nd.y,r,0,Math.PI*2);
-      ctx.fillStyle=col;ctx.globalAlpha=isSel?1:0.85;ctx.fill();
-      ctx.shadowBlur=0;ctx.globalAlpha=1;
-      // inner highlight
-      const grad=ctx.createRadialGradient(nd.x-r*0.3,nd.y-r*0.3,0,nd.x,nd.y,r);
-      grad.addColorStop(0,'rgba(255,255,255,0.25)');grad.addColorStop(1,'rgba(0,0,0,0)');
-      ctx.beginPath();ctx.arc(nd.x,nd.y,r,0,Math.PI*2);ctx.fillStyle=grad;ctx.fill();
-      // stat arcs on selected node
-      if(isSel){
-        const metrics=[{v:nd.degreeN,col:'#ED1C2E',start:-Math.PI/2},{v:nd.betweenN,col:'#F97316',start:0},{v:nd.clusterN,col:'#009CCC',start:Math.PI/2},{v:nd.eigenN,col:'#1D9E75',start:Math.PI}];
-        metrics.forEach(m=>{
-          ctx.beginPath();ctx.arc(nd.x,nd.y,r+13,m.start,m.start+m.v*Math.PI*0.45);
-          ctx.strokeStyle=m.col;ctx.lineWidth=3;ctx.shadowColor=m.col;ctx.shadowBlur=6;ctx.stroke();ctx.shadowBlur=0;
-        });
-      }
-      // label
-      const fs=Math.max(8,Math.min(11,r*0.85));
-      ctx.font=`600 ${fs}px Montserrat,sans-serif`;ctx.textAlign='center';ctx.textBaseline='top';
-      const lw=ctx.measureText(nd.label).width;
-      ctx.fillStyle='rgba(12,25,34,0.75)';
-      const lx=nd.x-lw/2-3,ly=nd.y+r+4;
-      ctx.beginPath();ctx.roundRect?ctx.roundRect(lx,ly,lw+6,fs+4,3):ctx.rect(lx,ly,lw+6,fs+4);ctx.fill();
-      ctx.fillStyle=isSel?'#ffffff':'rgba(255,255,255,0.8)';
-      ctx.fillText(nd.label,nd.x,ly+2);
+      ctx.fillStyle=col;ctx.fill();
+      ctx.shadowBlur=0;ctx.shadowOffsetY=0;
+
+      // inner gradient highlight
+      const g=ctx.createRadialGradient(nd.x-r*0.35,nd.y-r*0.35,0,nd.x,nd.y,r);
+      g.addColorStop(0,'rgba(255,255,255,0.32)');g.addColorStop(0.6,'rgba(255,255,255,0.05)');g.addColorStop(1,'rgba(0,0,0,0.08)');
+      ctx.beginPath();ctx.arc(nd.x,nd.y,r,0,Math.PI*2);ctx.fillStyle=g;ctx.fill();
+
+      // white border
+      ctx.beginPath();ctx.arc(nd.x,nd.y,r,0,Math.PI*2);
+      ctx.strokeStyle=isSel?'rgba(255,255,255,0.9)':'rgba(255,255,255,0.7)';ctx.lineWidth=isSel?2:1.5;ctx.stroke();
+
+      // label inside node
+      ctx.textAlign='center';ctx.textBaseline='middle';
+      const shortLabel=nd.label.length>12?nd.label.split(' ').map(w=>w[0]).join('').slice(0,4):nd.label;
+      const fs=Math.max(8,Math.min(11,r*0.38));
+      ctx.font=`700 ${fs}px Montserrat,sans-serif`;
+      ctx.fillStyle='rgba(255,255,255,0.95)';
+      ctx.fillText(shortLabel,nd.x,nd.y-(fs*0.5));
+      // percentage below label
+      ctx.font=`600 ${Math.max(7,fs-1)}px Montserrat,sans-serif`;
+      ctx.fillStyle='rgba(255,255,255,0.8)';
+      ctx.fillText((mv*100).toFixed(0)+'%',nd.x,nd.y+(fs*0.7));
+
+      // full label below bubble
+      ctx.font=`500 10px Montserrat,sans-serif`;
+      ctx.fillStyle=isSel?'#263842':'#50545D';
+      ctx.fillText(nd.label,nd.x,nd.y+r+12);
     });
   }
 
-  function metricKey(){return colourMode==='betweenness'?'betweenN':colourMode==='clustering'?'clusterN':colourMode==='eigenvector'?'eigenN':'degreeN';}
+  function updateStats(){
+    const mk=metricMode+'N';
+    const sorted=[...nodes].sort((a,b)=>b[mk]-a[mk]);
+    const top=sorted[0];
+    const gaps=sorted.filter(n=>n[mk]<0.15);
+    document.getElementById('stat-nodes').textContent=nodes.length;
+    document.getElementById('stat-edges').textContent=edges.length;
+    document.getElementById('stat-top').textContent=top?top.label:'—';
+    document.getElementById('stat-top-sub').textContent=top?((top[mk]*100).toFixed(0)+'%'):'';
+    document.getElementById('stat-gaps').textContent=gaps.length;
 
-  function updatePanels(){
-    const mk=metricKey();
-    const gaps=[...nodes].filter(n=>n[mk]<0.15).sort((a,b)=>a[mk]-b[mk]);
-    document.getElementById('gapList').innerHTML=gaps.length
-      ?gaps.map(n=>`<div class="gap-row"><span class="gap-name">${n.label}</span><span class="gap-score">${(n[mk]*100).toFixed(0)}%</span></div>`).join('')
-      :'<div style="font-size:12px;color:var(--text3);font-weight:300">No gap nodes on this metric.</div>';
-
-    const nd=selectedNode;
-    const detEl=document.getElementById('nodeDetail');
-    const barsEl=document.getElementById('statBars');
-    if(nd){
-      detEl.innerHTML=`<strong style="color:var(--text)">${nd.label}</strong><br><span style="font-family:var(--ff-head);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text3)">${nd.type}</span>`;
-      detEl.style.fontStyle='normal';
-      barsEl.style.display='flex';
-      const set=(id,val,col)=>{document.getElementById('sf-'+id).style.width=(val*100).toFixed(0)+'%';document.getElementById('sv-'+id).textContent=(val*100).toFixed(0)+'%';};
-      set('deg',nd.degreeN);set('bet',nd.betweenN);set('clu',nd.clusterN);set('eig',nd.eigenN);
-      // cluster narrative
+    // insight
+    const ins=document.getElementById('graphInsight');
+    const topTwo=sorted.slice(0,2).map(n=>n.label);
+    const gapNames=gaps.slice(0,2).map(n=>n.label);
+    if(selectedNode){
+      const nd=selectedNode;
       const cl=clusterOf(nd.id);
-      const narEl=document.getElementById('clusterNarrative');
+      ins.innerHTML=`<strong>${nd.label}</strong> — Degree ${(nd.degreeN*100).toFixed(0)}%, Betweenness ${(nd.betweenN*100).toFixed(0)}%, Clustering ${(nd.clusterN*100).toFixed(0)}%, Eigenvector ${(nd.eigenN*100).toFixed(0)}%.${cl?` Part of the <strong>${cl.name}</strong>.`:''}`;
       if(cl){
         document.getElementById('cn-label').textContent=cl.name;
         document.getElementById('cn-label').style.color=cl.color;
-        document.getElementById('cn-name').textContent=nd.label+' — '+cl.name;
+        document.getElementById('cn-name').textContent=cl.name;
         document.getElementById('cn-body').textContent=cl.narrative;
-        narEl.classList.remove('hidden');
-      } else {narEl.classList.add('hidden');}
+        document.getElementById('clusterNarrative').classList.remove('hidden');
+      } else { document.getElementById('clusterNarrative').classList.add('hidden'); }
     } else {
-      detEl.innerHTML='Click any node to inspect centrality scores.';
-      detEl.style.fontStyle='italic';barsEl.style.display='none';
+      ins.innerHTML=`<strong>${topTwo.join(', ')}</strong> score highest on ${metricMode} — these are your strategic bridges. Claude would flag these as priority resources for translation and cross-stream tagging.${gapNames.length?` Gap nodes: <strong>${gapNames.join(', ')}</strong>.`:''}`;
       document.getElementById('clusterNarrative').classList.add('hidden');
     }
+
+    // table
+    const tbody=document.getElementById('graphTableBody');
+    tbody.innerHTML=sorted.map(nd=>{
+      const barW=Math.round(nd.degreeN*60);
+      return`<tr>
+        <td style="font-weight:500;color:var(--text)">${nd.label}</td>
+        <td><span class="type-badge tb-${nd.type}">${nd.type}</span></td>
+        <td><span class="deg-bar" style="width:${barW}px"></span>${nd.degree}</td>
+        <td>${(nd.betweenN*100).toFixed(1)}%</td>
+        <td>${(nd.clusterN*100).toFixed(1)}%</td>
+        <td>${(nd.eigenN*100).toFixed(1)}%</td>
+      </tr>`;
+    }).join('');
   }
 
-  function loop(){physics();draw();updatePanels();requestAnimationFrame(loop);}
+  function loop(){physics();draw();updateStats();requestAnimationFrame(loop);}
 
   function getXY(e){
     const rect=canvas.getBoundingClientRect();
@@ -727,19 +745,31 @@ footer{padding:3rem 0;text-align:center}
   canvas.addEventListener('mousemove',e=>{if(dragging){const {x,y}=getXY(e);dragging.x=x-dragOffX;dragging.y=y-dragOffY;}});
   canvas.addEventListener('mouseup',e=>{
     const {x,y}=getXY(e);
-    const moved=Math.hypot(x-mouseDown.x,y-mouseDown.y)<5;
-    if(moved){const nd=hit(x,y);selectedNode=nd===selectedNode?null:nd;}
+    if(Math.hypot(x-mouseDown.x,y-mouseDown.y)<5){const nd=hit(x,y);selectedNode=nd===selectedNode?null:nd;}
     dragging=null;
   });
   canvas.addEventListener('touchstart',e=>{e.preventDefault();const {x,y}=getXY(e);const nd=hit(x,y);if(nd){dragging=nd;dragOffX=x-nd.x;dragOffY=y-nd.y;}},{passive:false});
   canvas.addEventListener('touchmove',e=>{e.preventDefault();if(dragging){const {x,y}=getXY(e);dragging.x=x-dragOffX;dragging.y=y-dragOffY;}},{passive:false});
   canvas.addEventListener('touchend',()=>{dragging=null;});
 
-  document.getElementById('graphControls').addEventListener('click',e=>{
-    const btn=e.target.closest('.ctrl-chip');if(!btn)return;
-    document.querySelectorAll('.ctrl-chip').forEach(b=>b.classList.remove('active'));
-    btn.classList.add('active');colourMode=btn.dataset.mode;
-  });
+  document.getElementById('colourSelect').addEventListener('change',e=>{colourMode=e.target.value;});
+  document.getElementById('metricSelect').addEventListener('change',e=>{metricMode=e.target.value;});
+
+  window.reshuffleGraph=function(){
+    nodes.forEach(nd=>{nd.x=W*0.2+Math.random()*W*0.6;nd.y=H*0.2+Math.random()*H*0.6;nd.vx=(Math.random()-0.5)*4;nd.vy=(Math.random()-0.5)*4;});
+  };
+
+  window.askClaude=function(){
+    const ins=document.getElementById('graphInsight');
+    ins.innerHTML='<span style="color:var(--text3)">Generating strategic brief…</span>';
+    setTimeout(()=>{
+      const mk=metricMode+'N';
+      const sorted=[...nodes].sort((a,b)=>b[mk]-a[mk]);
+      const top=sorted[0],second=sorted[1];
+      const gaps=sorted.filter(n=>n[mk]<0.15);
+      ins.innerHTML=`<strong>Claude brief (${metricMode}):</strong> <strong>${top.label}</strong> and <strong>${second.label}</strong> are the highest-scoring nodes — prioritise these for cross-stream tagging and translation. ${gaps.length?`<strong>${gaps.map(n=>n.label).join(', ')}</strong> score below 15% — these represent coverage gaps where new resources would have the highest network impact.`:''} The ${CLUSTERS[0].name.toLowerCase()} shows the densest clustering; the ${CLUSTERS[1].name.toLowerCase()} is the most isolated and most in need of bridge resources.`;
+    },900);
+  };
 
   initGraph();computeCentralities();loop();
 })();
