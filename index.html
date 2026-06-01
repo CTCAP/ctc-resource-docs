@@ -536,9 +536,12 @@ footer{padding:3rem 0;text-align:center}
 
   function initGraph(){
     nodes=[];
-    CITIES.forEach((name,i)=>{const a=(i/CITIES.length)*Math.PI*2-Math.PI/2;nodes.push({id:name,type:'city',x:W/2+Math.cos(a)*150,y:H/2+Math.sin(a)*120,vx:0,vy:0,label:name});});
-    THEMES.forEach((name,i)=>{const a=(i/THEMES.length)*Math.PI*2-Math.PI/2;nodes.push({id:name,type:'theme',x:W/2+Math.cos(a)*270,y:H/2+Math.sin(a)*200,vx:0,vy:0,label:name});});
-    ASSETS.forEach((name,i)=>{const a=(i/ASSETS.length)*Math.PI*2;nodes.push({id:name,type:'asset',x:W/2+Math.cos(a)*75,y:H/2+Math.sin(a)*55,vx:0,vy:0,label:name});});
+    // Spread cities in a wide ring
+    CITIES.forEach((name,i)=>{const a=(i/CITIES.length)*Math.PI*2-Math.PI/2;nodes.push({id:name,type:'city',x:W/2+Math.cos(a)*200,y:H/2+Math.sin(a)*160,vx:(Math.random()-0.5)*2,vy:(Math.random()-0.5)*2,label:name});});
+    // Themes in a larger ring with jitter
+    THEMES.forEach((name,i)=>{const a=(i/THEMES.length)*Math.PI*2-Math.PI/2;const jit=(Math.random()-0.5)*60;nodes.push({id:name,type:'theme',x:W/2+Math.cos(a)*(310+jit),y:H/2+Math.sin(a)*(230+jit),vx:(Math.random()-0.5)*2,vy:(Math.random()-0.5)*2,label:name});});
+    // Assets in a small central ring
+    ASSETS.forEach((name,i)=>{const a=(i/ASSETS.length)*Math.PI*2;nodes.push({id:name,type:'asset',x:W/2+Math.cos(a)*90,y:H/2+Math.sin(a)*70,vx:(Math.random()-0.5)*2,vy:(Math.random()-0.5)*2,label:name});});
     const raw=[
       ['Sydney','Gospel DNA',8],['Sydney','Leadership Dev',5],['Sydney','City Engagement',6],['Sydney','Strategy Doc',4],['Sydney','Tool',3],
       ['Seoul','Gospel DNA',10],['Seoul','Church Multiplication',7],['Seoul','Disciple-Making',6],['Seoul','Strategy Doc',5],['Seoul','Curriculum',4],
@@ -598,16 +601,17 @@ footer{padding:3rem 0;text-align:center}
   function nodeR(nd){return 6+nd.degreeN*20;}
 
   function physics(){
+    const PAD=55;
     nodes.forEach(a=>{
       if(a===dragging)return;
-      nodes.forEach(b=>{if(a===b)return;const dx=a.x-b.x,dy=a.y-b.y,d2=dx*dx+dy*dy+1,f=5500/d2;a.vx+=dx*f;a.vy+=dy*f;});
-      a.vx+=(W/2-a.x)*0.005;a.vy+=(H/2-a.y)*0.005;
-      a.vx*=0.84;a.vy*=0.84;a.x+=a.vx;a.y+=a.vy;
-      a.x=Math.max(28,Math.min(W-28,a.x));a.y=Math.max(28,Math.min(H-28,a.y));
+      nodes.forEach(b=>{if(a===b)return;const dx=a.x-b.x,dy=a.y-b.y,d2=dx*dx+dy*dy+0.01,f=9000/d2;a.vx+=dx*f;a.vy+=dy*f;});
+      a.vx+=(W/2-a.x)*0.004;a.vy+=(H/2-a.y)*0.004;
+      a.vx*=0.80;a.vy*=0.80;a.x+=a.vx;a.y+=a.vy;
+      a.x=Math.max(PAD,Math.min(W-PAD,a.x));a.y=Math.max(PAD,Math.min(H-PAD,a.y));
     });
     edges.forEach(e=>{
       const a=getNode(e.a),b=getNode(e.b);if(!a||!b)return;
-      const dx=b.x-a.x,dy=b.y-a.y,d=Math.sqrt(dx*dx+dy*dy)||1,target=85-e.w*2,diff=(d-target)*0.011,fx=dx/d*diff,fy=dy/d*diff;
+      const dx=b.x-a.x,dy=b.y-a.y,d=Math.sqrt(dx*dx+dy*dy)||1,target=100-e.w*3,diff=(d-target)*0.009,fx=dx/d*diff,fy=dy/d*diff;
       if(a!==dragging){a.vx+=fx;a.vy+=fy;}if(b!==dragging){b.vx-=fx;b.vy-=fy;}
     });
   }
